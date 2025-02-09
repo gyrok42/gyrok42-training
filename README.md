@@ -1,4 +1,4 @@
-# **Bitwise Operations Training with Bazel**
+# **Training Concepts and Testing with Bazel**
 
 ## **Overview**
 This repository provides training exercises, implemented in C and C++ and built using **Bazel**. The goal is to offer a structured environment to practice and understand several concepts.
