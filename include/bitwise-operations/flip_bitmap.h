@@ -2,7 +2,7 @@
 #include <cstdint>
 
 /**
- * @brief Multiplies two 32-bit signed integers and returns the result.
+ * Multiplies two 32-bit signed integers and returns the result.
  *
  * @param a The first integer to be multiplied.
  * @param b The second integer to be multiplied.

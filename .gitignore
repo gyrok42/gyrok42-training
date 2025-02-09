@@ -4,6 +4,10 @@ bazel-gyrok42-training
 bazel-out
 bazel-testlogs
 
+# auto-generated docs
+docs/html
+docs/latex
+
 # Bazel lock file
 MODULE.bazel.lock
 

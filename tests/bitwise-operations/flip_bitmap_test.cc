@@ -5,14 +5,24 @@
 #include <cstdint>
 #include <vector>
 
-// Test multiply function
+/**
+ * @test Test case for the multiply function.
+ *
+ * This test verifies that the multiply function correctly computes
+ * the product of two numbers, including edge cases.
+ */
 TEST(FlipBitmapTest, MultiplyTest) {
   EXPECT_EQ(multiply(3, 4), 12);
   EXPECT_EQ(multiply(0, 5), 0);
   EXPECT_EQ(multiply(7, 1), 7);
 }
 
-// Test swap_bits function
+/**
+ * @test Test case for swap_bits function.
+ *
+ * This test ensures that swapping bits between two bytes produces
+ * the expected result.
+ */
 TEST(FlipBitmapTest, SwapBitsTest) {
   uint8_t byte1 = 0b10101010;
   uint8_t byte2 = 0b01010100;
@@ -22,7 +32,11 @@ TEST(FlipBitmapTest, SwapBitsTest) {
   EXPECT_EQ(byte2, 0b01010101);
 }
 
-// Test reverse_array_bits function
+/**
+ * @test Test case for reverse_array_bits function.
+ *
+ * This test checks if each byte in an array has its bits reversed correctly.
+ */
 TEST(FlipBitmapTest, ReverseArrayBitsTest) {
   uint8_t arr[] = {0b10100000, 0b01100000};
   reverse_array_bits(arr, 2);
@@ -31,7 +45,12 @@ TEST(FlipBitmapTest, ReverseArrayBitsTest) {
   EXPECT_EQ(arr[1], 0b00000101);
 }
 
-// Test flip_horizontaly_bitmap function
+/**
+ * @test Test case for flip_horizontally_bitmap function.
+ *
+ * This test verifies that flipping a bitmap horizontally produces
+ * the expected mirrored result.
+ */
 TEST(FlipBitmapTest, FlipHorizontalTest) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // reverse: 001101100011011011001011
@@ -51,7 +70,15 @@ TEST(FlipBitmapTest, FlipHorizontalTest) {
   print_bitmap(arr, 3, 2);
 }
 
-// Run all tests
+/**
+ * @brief Main function to execute all Google Test cases.
+ *
+ * Initializes the Google Test framework and runs all registered tests.
+ *
+ * @param argc Argument count
+ * @param argv Argument vector
+ * @return Returns 0 if all tests pass, otherwise returns the number of failed tests.
+ */
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
   testing::GTEST_FLAG(catch_exceptions) = false;
