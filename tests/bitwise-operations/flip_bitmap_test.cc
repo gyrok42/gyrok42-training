@@ -31,15 +31,15 @@ TEST(FlipBitmapTest, ReverseArrayBitsTest) {
   EXPECT_EQ(arr[1], 0b00000101);
 }
 
-// Test flip_horizontaly_bitmap_mtp8bit function
+// Test flip_horizontaly_bitmap function
 TEST(FlipBitmapTest, FlipHorizontalTest) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // reverse: 001101100011011011001011
       0b00110110, 0b00110110, 0b11001011};  // reverse: 110100110110110001101100
   std::cout << "ORIGINAL BITMAP" << std::endl;
   std::cout << "==============" << std::endl;
-  print_bitmap_mtp8bit(arr, 3, 2);
-  flip_horizontaly_bitmap_mtp8bit(arr, 3, 2);
+  print_bitmap(arr, 3, 2);
+  flip_horizontaly_bitmap(arr, 3, 2);
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
   EXPECT_EQ(arr[2], 0b11001011);
@@ -48,7 +48,7 @@ TEST(FlipBitmapTest, FlipHorizontalTest) {
   EXPECT_EQ(arr[5], 0b01101100);
   std::cout << "FLIPPED BITMAP" << std::endl;
   std::cout << "==============" << std::endl;
-  print_bitmap_mtp8bit(arr, 3, 2);
+  print_bitmap(arr, 3, 2);
 }
 
 // Run all tests

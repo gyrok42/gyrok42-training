@@ -1,0 +1,28 @@
+# Default owners for everything in the repository
+* @gyrok42 @Jairo-borba
+
+# Specific ownership rules for different files and directories
+
+# Documentation ownership
+/docs/ @gyrok42 @Jairo-borba
+
+# Build and configuration files
+LICENSE @gyrok42 @Jairo-borba
+MODULE.bazel @gyrok42 @Jairo-borba
+MODULE.bazel.lock @gyrok42 @Jairo-borba
+
+# Header files ownership
+/include/ @gyrok42 @Jairo-borba
+/include/bitwise-operations/ @gyrok42 @Jairo-borba
+
+# Source code ownership
+/src/ @gyrok42 @Jairo-borba
+/src/bitwise-operations/ @gyrok42 @Jairo-borba
+
+# Tests ownership
+/tests/ @gyrok42 @Jairo-borba
+/tests/bitwise-operations/ @gyrok42 @Jairo-borba
+
+# Third-party dependencies and tools
+/third-party/ @gyrok42 @Jairo-borba
+/tools/ @gyrok42 @Jairo-borba
