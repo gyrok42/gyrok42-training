@@ -1,12 +1,9 @@
-# **Training Concepts and Testing with Bazel**
-
+# **Training Embedded Systems Concepts**
+#### Building with Bazel | Unit-test with Google Test
 ## **Overview**
-This repository provides training exercises, implemented in C and C++ and built using **Bazel**.<br>
-The goal is to offer a structured environment to practice and understand several concepts.<br>
-The code for the execices will be located on src and include directories.<br>
-To run the exercices, unit-tests are created on tests directory.<br>
-A lot more exercises will be added over time.<br>
-See below the description to install and run this repo on your machine.
+This repository offers C and C++ training exercises built with **Bazel**, providing a structured environment for learning key concepts.<br>
+Exercises are in `src/` and `include/`, with unit tests using **Google Test** in `tests/`. More exercises will be added over time.<br>
+See below for setup and usage instructions.
 
 ## **Getting Started**
 
@@ -54,33 +51,65 @@ bazel test //tests/bitwise-operations:flip_bitmap_test
 ```
 
 ### **5. Run the Executable**
-If your project produces a binary, you can run it with:
+It is just building the experiments as a library and running unit-tests.
+
+### **6. Generate Documentation with Doxygen**
+To generate the project documentation using **Doxygen**, follow these steps:
+
+#### **6.1 Install Doxygen**
+Ensure you have **Doxygen** installed. If not, install it using:
+
+- **Ubuntu/Debian:**
+  ```sh
+  sudo apt-get install doxygen
+  ```
+- **MacOS (Homebrew):**
+  ```sh
+  brew install doxygen
+  ```
+- **Windows:**
+  Download and install from [Doxygen's official site](https://www.doxygen.nl/download.html).
+
+#### **6.2 Run Doxygen**
+To generate the documentation, execute:
 
 ```sh
-bazel run //src/bitwise-operations:flip_bitmap
+doxygen Doxyfile
+```
+
+#### **6.3 View the Documentation**
+Once generated, the documentation will be available in:
+- **HTML format:** `docs/html/index.html`
+- **LaTeX format:** `docs/latex/`
+
+To view the HTML documentation, open:
+
+```sh
+xdg-open docs/html/index.html  # Linux
+open docs/html/index.html      # MacOS
+start docs/html/index.html     # Windows
 ```
 
 ## **Project Structure**
 
 ```
 .
-├── include/                # Header files
-│   ├── bitwise-operations/
-│   │   ├── flip_bitmap.h
-│   │   ├── BUILD
-├── src/                    # Source code
-│   ├── bitwise-operations/
-│   │   ├── flip_bitmap.cc
-│   │   ├── BUILD
-├── tests/                  # Unit tests
-│   ├── bitwise-operations/
-│   │   ├── flip_bitmap_test.cc
-│   │   ├── BUILD
-├── third-party/            # External dependencies (if any)
-├── tools/                  # Utility scripts/tools
-├── MODULE.bazel            # Bazel module definition
-├── LICENSE                 # License file
-├── README.md               # Project documentation
+├── docs
+│   ├── html
+│   ├── latex
+│   └── CODEOWNERS
+├── include
+│   └── bitwise-operations
+├── src
+│   └── bitwise-operations
+├── tests
+│   └── bitwise-operations
+├── third-party
+├── tools
+├── Doxyfile
+├── LICENSE
+├── MODULE.bazel
+└── README.md
 ```
 
 ## **Contributing**
