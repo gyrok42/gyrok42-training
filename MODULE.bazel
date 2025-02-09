@@ -1,0 +1,3 @@
+module(name = "gyrok42-training")
+
+bazel_dep(name = "googletest", version = "1.14.0")

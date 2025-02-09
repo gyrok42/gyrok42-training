@@ -1,3 +1,25 @@
+# Bazel build and output directories
+bazel-bin/
+bazel-gyrok42-training/
+bazel-out/
+bazel-testlogs/
+
+# Bazel lock file
+MODULE.bazel.lock
+
+# Generated files
+*.log
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+
 # Prerequisites
 *.d
 
@@ -30,3 +52,7 @@
 *.exe
 *.out
 *.app
+
+# Temporary files
+*.tmp
+*.bak

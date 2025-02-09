@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 80
+DerivePointerAlignment: false
+PointerAlignment: Left
+AllowShortFunctionsOnASingleLine: InlineOnly
+BreakBeforeBraces: Attach
+AlwaysBreakTemplateDeclarations: Yes
+SpaceAfterCStyleCast: Yes
+UseTab: Never
+SortIncludes: CaseSensitive
+
