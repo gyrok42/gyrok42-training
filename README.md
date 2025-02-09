@@ -1,8 +1,12 @@
 # **Training Concepts and Testing with Bazel**
 
 ## **Overview**
-This repository provides training exercises, implemented in C and C++ and built using **Bazel**. The goal is to offer a structured environment to practice and understand several concepts.<br>
-A lot more modules will be added over time.
+This repository provides training exercises, implemented in C and C++ and built using **Bazel**.<br>
+The goal is to offer a structured environment to practice and understand several concepts.<br>
+The code for the execices will be located on src and include directories.<br>
+To run the exercices, unit-tests are created on tests directory.<br>
+A lot more exercises will be added over time.<br>
+See below the description to install and run this repo on your machine.
 
 ## **Getting Started**
 

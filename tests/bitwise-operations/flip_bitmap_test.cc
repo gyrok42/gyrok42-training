@@ -36,6 +36,9 @@ TEST(FlipBitmapTest, FlipHorizontalTest) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // reverse: 001101100011011011001011
       0b00110110, 0b00110110, 0b11001011};  // reverse: 110100110110110001101100
+  std::cout << "ORIGINAL BITMAP" << std::endl;
+  std::cout << "==============" << std::endl;
+  print_bitmap_mtp8bit(arr, 3, 2);
   flip_horizontaly_bitmap_mtp8bit(arr, 3, 2);
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
@@ -43,10 +46,14 @@ TEST(FlipBitmapTest, FlipHorizontalTest) {
   EXPECT_EQ(arr[3], 0b11010011);
   EXPECT_EQ(arr[4], 0b01101100);
   EXPECT_EQ(arr[5], 0b01101100);
+  std::cout << "FLIPPED BITMAP" << std::endl;
+  std::cout << "==============" << std::endl;
+  print_bitmap_mtp8bit(arr, 3, 2);
 }
 
 // Run all tests
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
+  testing::GTEST_FLAG(catch_exceptions) = false;
   return RUN_ALL_TESTS();
 }

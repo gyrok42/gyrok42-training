@@ -1,0 +1,2 @@
+# Enable verbose output for all tests
+test --test_output=all
