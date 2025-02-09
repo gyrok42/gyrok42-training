@@ -1,8 +1,8 @@
 # Bazel build and output directories
-bazel-bin/
-bazel-gyrok42-training/
-bazel-out/
-bazel-testlogs/
+bazel-bin
+bazel-gyrok42-training
+bazel-out
+bazel-testlogs
 
 # Bazel lock file
 MODULE.bazel.lock
