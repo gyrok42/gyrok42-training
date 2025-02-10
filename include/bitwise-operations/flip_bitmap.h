@@ -96,6 +96,11 @@ void reverseArray(uint8_t* arr, int size);
  *
  * The algorithm first reverses the bits within each byte,
  * then reverses the order of bytes in each row.
+ * How it is reversing each row - Showing with letters instead of {0,1}
+ * to make visualization easier:
+ * fedcbazy xwvutsrq ponmlkji hgfedcba (original bits)
+ * yzabcdef qrstuvwx ijklmnop abcdefgh (reverse bits of each byte)
+ * abcdefgh ijklmnop qrstuvwx yzabcdef (reverse the bytes order)
  *
  * @param flat_array Pointer to the bitmap data stored as a flat array.
  * @param width_bytes The width of the bitmap in bytes (not pixels).

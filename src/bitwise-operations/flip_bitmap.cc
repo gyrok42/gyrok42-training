@@ -107,6 +107,11 @@ void flip_horizontaly_bitmap_reversing(uint8_t* flat_array,
   uint32_t total_bytes = multiply(height_rows, width_bytes);
   for (uint16_t row_byte_position = 0; row_byte_position < total_bytes;
        row_byte_position += width_bytes) {
+    // How it is reversing each row
+    // First flip the bits of each byte of the line:
+    // fedcbazy xwvutsrq ponmlkji hgfedcba (original bits)
+    // yzabcdef qrstuvwx ijklmnop abcdefgh (reverse bits of each byte)
+    // abcdefgh ijklmnop qrstuvwx yzabcdef (reverse the bytes order)
     for (uint16_t w = 0; w < width_bytes; w++) {
       reverse_bits(&flat_array[row_byte_position + w]);
     }
