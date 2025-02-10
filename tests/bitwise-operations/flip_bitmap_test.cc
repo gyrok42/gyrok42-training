@@ -1,3 +1,7 @@
+// Copyright (c) 2025 gyrok42.com
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
 #include "include/bitwise-operations/flip_bitmap.h"
 
 #include <gtest/gtest.h>

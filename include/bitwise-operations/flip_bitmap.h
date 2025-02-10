@@ -1,3 +1,7 @@
+// Copyright (c) 2025 gyrok42.com
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
 #pragma once
 #include <cstdint>
 
@@ -46,14 +50,14 @@ void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes);
  * @note The `flip_horizontaly_bitmap_reversing` approach is generally
  * preferable as it is simpler, easier to understand, and more straightforward
  * to document.
- * 
+ *
  * @see flip_horizontaly_bitmap_reversing
  *
- * @param flat_bitmap Pointer to the bitmap data stored as a flat array.
+ * @param flat_array Pointer to the bitmap data stored as a flat array.
  * @param width_bytes The width of the bitmap in bytes (not pixels).
  * @param height_rows The height of the bitmap in rows.
  */
-void flip_horizontaly_bitmap_swapping_bits(uint8_t* flat_bitmap,
+void flip_horizontaly_bitmap_swapping_bits(uint8_t* flat_array,
                                            uint16_t width_bytes,
                                            uint16_t height_rows);
 
@@ -93,20 +97,20 @@ void reverseArray(uint8_t* arr, int size);
  * The algorithm first reverses the bits within each byte,
  * then reverses the order of bytes in each row.
  *
- * @param flat_bitmap Pointer to the bitmap data stored as a flat array.
+ * @param flat_array Pointer to the bitmap data stored as a flat array.
  * @param width_bytes The width of the bitmap in bytes (not pixels).
  * @param height_rows The height of the bitmap in rows.
  */
-void flip_horizontaly_bitmap_reversing(uint8_t* flat_bitmap,
+void flip_horizontaly_bitmap_reversing(uint8_t* flat_array,
                                        uint16_t width_bytes,
                                        uint16_t height_rows);
 
 /**
  * @brief Prints a monochrome bitmap horizontally in place.
  *
- * @param flat_bitmap Pointer to the bitmap data stored as a flat array.
+ * @param flat_array Pointer to the bitmap data stored as a flat array.
  * @param width_bytes The width of the bitmap in bytes (not pixels).
  * @param height_rows The height of the bitmap in rows.
  */
-void print_bitmap(uint8_t* flat_bitmap, uint16_t width_bytes,
+void print_bitmap(uint8_t* flat_array, uint16_t width_bytes,
                   uint16_t height_rows);
