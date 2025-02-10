@@ -8,6 +8,9 @@ bazel-testlogs
 docs/html
 docs/latex
 
+# vscode
+.vscode
+
 # Bazel lock file
 MODULE.bazel.lock
 

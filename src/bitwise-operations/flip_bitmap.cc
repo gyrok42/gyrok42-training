@@ -16,6 +16,8 @@
 // The height corresponds to the number of lines of the 2D bitmap.
 //
 // Aditional challenge: Do not use * operator for multiplication.
+// The `flip_horizontaly_bitmap_reversing` approach is preferable due to its
+// simplicity, clarity, and ease of explanation.
 //
 // Note: A lot of comments in the code since the purpose is training.
 
@@ -62,10 +64,13 @@ void swap_bits(uint8_t* byte1, uint8_t bit1, uint8_t* byte2, uint8_t bit2) {
   *byte2 ^= xor_value << bit2;
 }
 
-void reverse_array_bits(uint8_t* array, uint16_t bytes) {
+void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes) {
   int left = 0;
   int right = bytes - 1;
   constexpr int LAST_BIT = 7;
+
+  // flip_horizontaly_bitmap_reversing has a simpler algorithm
+  // This is a more complex option, not preferable.
 
   // Total of bits: 8 * bytes
   // When swapping, we walk half way: 4 * bytes, hence bytes << 2
@@ -81,15 +86,49 @@ void reverse_array_bits(uint8_t* array, uint16_t bytes) {
   }
 }
 
-void flip_horizontaly_bitmap(uint8_t* flat_bitmap, uint16_t width_bytes,
-                             uint16_t height_rows) {
+void flip_horizontaly_bitmap_swapping_bits(uint8_t* flat_bitmap,
+                                           uint16_t width_bytes,
+                                           uint16_t height_rows) {
   for (uint16_t h = 0; h < height_rows; h++) {
-    reverse_array_bits(&flat_bitmap[multiply(width_bytes, h)], width_bytes);
+    reverse_array_bits_swapping(&flat_bitmap[multiply(width_bytes, h)],
+                                width_bytes);
+  }
+}
+
+void reverse_bits(uint8_t* byte_var) {
+  *byte_var = (*byte_var & 0xF0) >> 4 | (*byte_var & 0x0F) << 4;
+  *byte_var = (*byte_var & 0xCC) >> 2 | (*byte_var & 0x33) << 2;
+  *byte_var = (*byte_var & 0xAA) >> 1 | (*byte_var & 0x55) << 1;
+}
+void reverseArray(uint8_t* arr, int size) {
+  int left = 0, right = size - 1;
+
+  while (left < right) {
+    // XOR swapping
+    arr[left] ^= arr[right];
+    arr[right] ^= arr[left];
+    arr[left] ^= arr[right];
+    // Move pointers
+    left++;
+    right--;
+  }
+}
+
+void flip_horizontaly_bitmap_reversing(uint8_t* flat_bitmap,
+                                       uint16_t width_bytes,
+                                       uint16_t height_rows) {
+  uint32_t total_bytes = multiply(height_rows, width_bytes);
+  for (uint16_t row_byte_position = 0; row_byte_position < total_bytes;
+       row_byte_position += width_bytes) {
+    for (uint16_t w = 0; w < width_bytes; w++) {
+      reverse_bits(&flat_bitmap[row_byte_position + w]);
+    }
+    reverseArray(&flat_bitmap[row_byte_position], width_bytes);
   }
 }
 
 void print_bitmap(uint8_t* flat_bitmap, uint16_t width_bytes,
-                          uint16_t height_rows) {
+                  uint16_t height_rows) {
   for (uint16_t h = 0; h < height_rows; h++) {
     for (uint16_t b = 0; b < width_bytes; b++) {
       std::cout << std::format("{:08b}",

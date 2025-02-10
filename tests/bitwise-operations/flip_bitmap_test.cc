@@ -33,32 +33,75 @@ TEST(FlipBitmapTest, SwapBitsTest) {
 }
 
 /**
- * @test Test case for reverse_array_bits function.
+ * @test Test case for reverse_array_bits_swapping function.
  *
  * This test checks if each byte in an array has its bits reversed correctly.
  */
 TEST(FlipBitmapTest, ReverseArrayBitsTest) {
   uint8_t arr[] = {0b10100000, 0b01100000};
-  reverse_array_bits(arr, 2);
+  reverse_array_bits_swapping(arr, 2);
 
   EXPECT_EQ(arr[0], 0b00000110);
   EXPECT_EQ(arr[1], 0b00000101);
 }
 
 /**
- * @test Test case for flip_horizontally_bitmap function.
+ * @test Test case for flip_horizontaly_bitmap_swapping_bits function.
  *
  * This test verifies that flipping a bitmap horizontally produces
  * the expected mirrored result.
  */
-TEST(FlipBitmapTest, FlipHorizontalTest) {
+TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // reverse: 001101100011011011001011
       0b00110110, 0b00110110, 0b11001011};  // reverse: 110100110110110001101100
   std::cout << "ORIGINAL BITMAP" << std::endl;
   std::cout << "==============" << std::endl;
   print_bitmap(arr, 3, 2);
-  flip_horizontaly_bitmap(arr, 3, 2);
+  flip_horizontaly_bitmap_swapping_bits(arr, 3, 2);
+  // Row 0
+  EXPECT_EQ(arr[0], 0b00110110);
+  EXPECT_EQ(arr[1], 0b00110110);
+  EXPECT_EQ(arr[2], 0b11001011);
+  // Row 1
+  EXPECT_EQ(arr[3], 0b11010011);
+  EXPECT_EQ(arr[4], 0b01101100);
+  EXPECT_EQ(arr[5], 0b01101100);
+  std::cout << "FLIPPED BITMAP" << std::endl;
+  std::cout << "==============" << std::endl;
+  print_bitmap(arr, 3, 2);
+}
+
+TEST(FlipBitmapTest, ReverseBitsTest) {
+  uint8_t byte_var = 0b11001010;
+  reverse_bits(&byte_var);
+  EXPECT_EQ(byte_var, 0b01010011);
+}
+
+TEST(FlipBitmapTest, ReverseArrayTest) {
+  uint8_t arr[6]{0b11010011, 0b01101100, 0b01101100,
+                 0b00110110, 0b00110110, 0b11001011};
+  // reverse: 110100110110110001101100001101100011011011001011
+  reverseArray(arr, 6);
+  // Row 0
+  EXPECT_EQ(arr[0], 0b11001011);
+  EXPECT_EQ(arr[1], 0b00110110);
+  EXPECT_EQ(arr[2], 0b00110110);
+  // Row 1
+  EXPECT_EQ(arr[3], 0b01101100);
+  EXPECT_EQ(arr[4], 0b01101100);
+  EXPECT_EQ(arr[5], 0b11010011);
+}
+
+TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
+  uint8_t arr[6]{0b11010011, 0b01101100,
+                 0b01101100,  // reverse: 00110110 00110110 11001011
+                 0b00110110, 0b00110110,
+                 0b11001011};  // reverse: 11010011 01101100 01101100
+  std::cout << "ORIGINAL BITMAP" << std::endl;
+  std::cout << "==============" << std::endl;
+  print_bitmap(arr, 3, 2);
+  flip_horizontaly_bitmap_reversing(arr, 3, 2);
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
   EXPECT_EQ(arr[2], 0b11001011);
@@ -77,7 +120,8 @@ TEST(FlipBitmapTest, FlipHorizontalTest) {
  *
  * @param argc Argument count
  * @param argv Argument vector
- * @return Returns 0 if all tests pass, otherwise returns the number of failed tests.
+ * @return Returns 0 if all tests pass, otherwise returns the number of failed
+ * tests.
  */
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
