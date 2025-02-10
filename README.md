@@ -2,6 +2,7 @@
 #### Building with Bazel | Unit-test with Google Test
 ## **Overview**
 This repository offers C and C++ training exercises built with **Bazel**, providing a structured environment for learning key concepts.<br>
+I started this in February 2025 to share with my colleagues and to keep track and organized with what I have learned along the way.
 Exercises are in `src/` and `include/`, with unit tests using **Google Test** in `tests/`. More exercises will be added over time.<br>
 See below for setup and usage instructions.
 
