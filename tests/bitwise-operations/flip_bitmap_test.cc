@@ -2,39 +2,15 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-#include "include/bitwise-operations/flip_bitmap.h"
 
+// standard includes
+
+// third-party includes
 #include <gtest/gtest.h>
 
-#include <cstdint>
-#include <vector>
-
-/**
- * @test Test case for the multiply function.
- *
- * This test verifies that the multiply function correctly computes
- * the product of two numbers, including edge cases.
- */
-TEST(FlipBitmapTest, MultiplyTest) {
-  EXPECT_EQ(multiply(3, 4), 12);
-  EXPECT_EQ(multiply(0, 5), 0);
-  EXPECT_EQ(multiply(7, 1), 7);
-}
-
-/**
- * @test Test case for swap_bits function.
- *
- * This test ensures that swapping bits between two bytes produces
- * the expected result.
- */
-TEST(FlipBitmapTest, SwapBitsTest) {
-  uint8_t byte1 = 0b10101010;
-  uint8_t byte2 = 0b01010100;
-  swap_bits(&byte1, 7, &byte2, 0);
-
-  EXPECT_EQ(byte1, 0b00101010);
-  EXPECT_EQ(byte2, 0b01010101);
-}
+// project includes
+#include "include/bitwise-operations/basic_bit_operations.h"
+#include "include/bitwise-operations/flip_bitmap.h"
 
 /**
  * @test Test case for reverse_array_bits_swapping function.
@@ -57,8 +33,8 @@ TEST(FlipBitmapTest, ReverseArrayBitsTest) {
  */
 TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   uint8_t arr[6]{
-      0b11010011, 0b01101100, 0b01101100,   // reverse: 001101100011011011001011
-      0b00110110, 0b00110110, 0b11001011};  // reverse: 110100110110110001101100
+      0b11010011, 0b01101100, 0b01101100,   // rev: 00110110 00110110 11001011
+      0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
   std::cout << "ORIGINAL BITMAP" << std::endl;
   std::cout << "==============" << std::endl;
   print_bitmap(arr, 3, 2);
@@ -76,12 +52,12 @@ TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   print_bitmap(arr, 3, 2);
 }
 
-TEST(FlipBitmapTest, ReverseBitsTest) {
-  uint8_t byte_var = 0b11001010;
-  reverse_bits(&byte_var);
-  EXPECT_EQ(byte_var, 0b01010011);
-}
-
+/**
+ * @test Test case for reverseArray function.
+ *
+ * This test verifies that reversing the order of elements
+ * in an array produces the expected reversed result.
+ */
 TEST(FlipBitmapTest, ReverseArrayTest) {
   uint8_t arr[6]{0b11010011, 0b01101100, 0b01101100,
                  0b00110110, 0b00110110, 0b11001011};
@@ -97,11 +73,16 @@ TEST(FlipBitmapTest, ReverseArrayTest) {
   EXPECT_EQ(arr[5], 0b11010011);
 }
 
+/**
+ * @test Test case for flip_horizontaly_bitmap_reversing function.
+ *
+ * This test verifies that flipping a bitmap horizontally using
+ * bitwise reversal produces the expected mirrored result.
+ */
 TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
-  uint8_t arr[6]{0b11010011, 0b01101100,
-                 0b01101100,  // reverse: 00110110 00110110 11001011
-                 0b00110110, 0b00110110,
-                 0b11001011};  // reverse: 11010011 01101100 01101100
+  uint8_t arr[6]{
+      0b11010011, 0b01101100, 0b01101100,   // rev: 00110110 00110110 11001011
+      0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
   std::cout << "ORIGINAL BITMAP" << std::endl;
   std::cout << "==============" << std::endl;
   print_bitmap(arr, 3, 2);
@@ -129,6 +110,5 @@ TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
  */
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
-  testing::GTEST_FLAG(catch_exceptions) = false;
   return RUN_ALL_TESTS();
 }

@@ -1,1 +1,1 @@
-exports_files(["flip_bitmap.h"])  # Allows visibility
+exports_files(["flip_bitmap.h", "basic_bit_operations.h"])  # Allows visibility

@@ -9,4 +9,5 @@ AlwaysBreakTemplateDeclarations: Yes
 SpaceAfterCStyleCast: Yes
 UseTab: Never
 SortIncludes: CaseSensitive
+IncludeBlocks: Preserve
 
