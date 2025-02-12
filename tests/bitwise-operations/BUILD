@@ -9,12 +9,13 @@ cc_test(
 )
 
 cc_test(
-    name = "flip_bitmap_test",
-    srcs = ["flip_bitmap_test.cc"],
+    name = "reverse_rows_test",
+    srcs = ["reverse_rows_test.cc"],
     deps = [
         "//src/bitwise-operations:basic_bit_operations",
-        "//src/bitwise-operations:flip_bitmap",
+        "//src/bitwise-operations:reverse_rows",
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
 )
+

@@ -8,19 +8,19 @@
 //
 // The challenge
 // =============
-// Implement the function void flip_horizontaly_bitmap(
+// Implement the function void reverse_rows(
 //                                     uint8_t* flat_array,
 //                                     uint16_t width_bytes,
 //                                     uint16_t height_lines);
 //
-// A 2D bitmap is provided such that each bit represents a pixel.
+// A 2D matrix of bits is provided.
 // Note that the 2D array is flatten to a 1D array: flat_array.
 // The width is given in bytes, which makes the width in bits multiple of 8.
-// The height corresponds to the number of lines of the 2D bitmap.
+// The height corresponds to the number of lines of the 2D matrix.
 //
 // Aditional challenge: Do not use * operator for multiplication.
 //
-// Note: The `flip_horizontaly_bitmap_reversing` approach is preferable due to
+// Note: The `reverse_rows` approach is preferable due to
 // its simplicity, clarity, and ease of explanation.
 
 // standard includes
@@ -28,14 +28,14 @@
 
 // third-party includes
 #include "include/bitwise-operations/basic_bit_operations.h"
-#include "include/bitwise-operations/flip_bitmap.h"
+#include "include/bitwise-operations/reverse_rows.h"
 
 void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes) {
   int left = 0;
   int right = bytes - 1;
   constexpr int LAST_BIT = 7;
 
-  // flip_horizontaly_bitmap_reversing has a simpler algorithm
+  // reverse_rows has a simpler algorithm
   // This is a more complex option, not preferable.
   int max_bit = bytes << 2;
   for (int i = 0; i < max_bit; i++) {
@@ -49,23 +49,21 @@ void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes) {
   }
 }
 
-void flip_horizontaly_bitmap_swapping_bits(uint8_t* flat_array,
-                                           uint16_t width_bytes,
-                                           uint16_t height_rows) {
+void reverse_rows_swapping_bits(uint8_t* flat_array, uint16_t width_bytes,
+                                uint16_t height_rows) {
   for (uint16_t h = 0; h < height_rows; h++) {
     reverse_array_bits_swapping(&flat_array[multiply(width_bytes, h)],
                                 width_bytes);
   }
 }
 
-void flip_horizontaly_bitmap_reversing(uint8_t* flat_array,
-                                       uint16_t width_bytes,
-                                       uint16_t height_rows) {
+void reverse_rows(uint8_t* flat_array, uint16_t width_bytes,
+                  uint16_t height_rows) {
   uint32_t total_bytes = multiply(height_rows, width_bytes);
   for (uint16_t row_byte_position = 0; row_byte_position < total_bytes;
        row_byte_position += width_bytes) {
     // How it is reversing each row
-    // First flip the bits of each byte of the line:
+    // First reverse the bits of each byte of the line:
     // fedcbazy xwvutsrq ponmlkji hgfedcba (original bits)
     // yzabcdef qrstuvwx ijklmnop abcdefgh (reverse bits of each byte)
     // abcdefgh ijklmnop qrstuvwx yzabcdef (reverse the bytes order)
@@ -76,8 +74,8 @@ void flip_horizontaly_bitmap_reversing(uint8_t* flat_array,
   }
 }
 
-void print_bitmap(uint8_t* flat_array, uint16_t width_bytes,
-                  uint16_t height_rows) {
+void print_2D_bit_matrix(uint8_t* flat_array, uint16_t width_bytes,
+                         uint16_t height_rows) {
   uint32_t total_bytes = multiply(height_rows, width_bytes);
   for (uint16_t row_byte_position = 0; row_byte_position < total_bytes;
        row_byte_position += width_bytes) {

@@ -7,10 +7,10 @@ cc_library(
     copts = ["-std=c++20"],
 )
 cc_library(
-    name = "flip_bitmap",
+    name = "reverse_rows",
     includes = ["include"],  # Include path for headers
-    srcs = ["flip_bitmap.cc"],
-    hdrs = ["//include/bitwise-operations:flip_bitmap.h", "//include/bitwise-operations:basic_bit_operations.h"],  # Ensure this exists
+    srcs = ["reverse_rows.cc"],
+    hdrs = ["//include/bitwise-operations:reverse_rows.h", "//include/bitwise-operations:basic_bit_operations.h"],  # Ensure this exists
     visibility = ["//tests/bitwise-operations:__subpackages__"],  # Allow tests to use it
     copts = ["-std=c++20"],
 )

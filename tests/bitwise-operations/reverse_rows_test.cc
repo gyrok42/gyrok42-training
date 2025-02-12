@@ -10,7 +10,7 @@
 
 // project includes
 #include "include/bitwise-operations/basic_bit_operations.h"
-#include "include/bitwise-operations/flip_bitmap.h"
+#include "include/bitwise-operations/reverse_rows.h"
 
 /**
  * @test Test case for reverse_array_bits_swapping function.
@@ -26,7 +26,7 @@ TEST(FlipBitmapTest, ReverseArrayBitsTest) {
 }
 
 /**
- * @test Test case for flip_horizontaly_bitmap_swapping_bits function.
+ * @test Test case for reverse_rows_swapping_bits function.
  *
  * This test verifies that flipping a bitmap horizontally produces
  * the expected mirrored result.
@@ -35,10 +35,10 @@ TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // rev: 00110110 00110110 11001011
       0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
-  std::cout << "ORIGINAL BITMAP" << std::endl;
-  std::cout << "==============" << std::endl;
-  print_bitmap(arr, 3, 2);
-  flip_horizontaly_bitmap_swapping_bits(arr, 3, 2);
+  std::cout << "ORIGINAL 2D MATRIX" << std::endl;
+  std::cout << "==================" << std::endl;
+  print_2D_bit_matrix(arr, 3, 2);
+  reverse_rows_swapping_bits(arr, 3, 2);
   // Row 0
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
@@ -47,9 +47,9 @@ TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   EXPECT_EQ(arr[3], 0b11010011);
   EXPECT_EQ(arr[4], 0b01101100);
   EXPECT_EQ(arr[5], 0b01101100);
-  std::cout << "FLIPPED BITMAP" << std::endl;
-  std::cout << "==============" << std::endl;
-  print_bitmap(arr, 3, 2);
+  std::cout << "FLIPPED 2D MATRIX (Horizontally)" << std::endl;
+  std::cout << "================================" << std::endl;
+  print_2D_bit_matrix(arr, 3, 2);
 }
 
 /**
@@ -74,7 +74,7 @@ TEST(FlipBitmapTest, ReverseArrayTest) {
 }
 
 /**
- * @test Test case for flip_horizontaly_bitmap_reversing function.
+ * @test Test case for reverse_rows_reversing function.
  *
  * This test verifies that flipping a bitmap horizontally using
  * bitwise reversal produces the expected mirrored result.
@@ -83,19 +83,19 @@ TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
   uint8_t arr[6]{
       0b11010011, 0b01101100, 0b01101100,   // rev: 00110110 00110110 11001011
       0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
-  std::cout << "ORIGINAL BITMAP" << std::endl;
-  std::cout << "==============" << std::endl;
-  print_bitmap(arr, 3, 2);
-  flip_horizontaly_bitmap_reversing(arr, 3, 2);
+  std::cout << "ORIGINAL 2D MATRIX" << std::endl;
+  std::cout << "==================" << std::endl;
+  print_2D_bit_matrix(arr, 3, 2);
+  reverse_rows(arr, 3, 2);
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
   EXPECT_EQ(arr[2], 0b11001011);
   EXPECT_EQ(arr[3], 0b11010011);
   EXPECT_EQ(arr[4], 0b01101100);
   EXPECT_EQ(arr[5], 0b01101100);
-  std::cout << "FLIPPED BITMAP" << std::endl;
-  std::cout << "==============" << std::endl;
-  print_bitmap(arr, 3, 2);
+  std::cout << "ORIGINAL 2D MATRIX" << std::endl;
+  std::cout << "==================" << std::endl;
+  print_2D_bit_matrix(arr, 3, 2);
 }
 
 /**
