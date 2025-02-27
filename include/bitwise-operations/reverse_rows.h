@@ -66,9 +66,9 @@ void reverseArray(uint8_t* arr, int size);
  *
  * The algorithm first reverses the bits within each byte,
  * then reverses the order of bytes in each row.
- * 
+ *
  * Demonstrating the algorithm - Showing  the bits with letters instead of
- * {0,1} to make visualization easier: 
+ * {0,1} to make visualization easier:
  * fedcbazy xwvutsrq ponmlkji hgfedcba (original bits)
  * yzabcdef qrstuvwx ijklmnop abcdefgh (reverse bits of each byte)
  * abcdefgh ijklmnop qrstuvwx yzabcdef (reverse the bytes order)
@@ -83,9 +83,10 @@ void reverse_rows(uint8_t* flat_array, uint16_t width_bytes,
 /**
  * @brief Prints a 2D matrix of bits.
  *
- * @param flat_array Pointer to the 2D maxtrix of bits data stored as a flat array.
+ * @param flat_array Pointer to the 2D maxtrix of bits data stored as a flat
+ * array.
  * @param width_bytes The width of the 2D maxtrix of bits in bytes (not pixels).
  * @param height_rows The height of the 2D maxtrix of bits in rows.
  */
 void print_2D_bit_matrix(uint8_t* flat_array, uint16_t width_bytes,
-                  uint16_t height_rows);
+                         uint16_t height_rows);
