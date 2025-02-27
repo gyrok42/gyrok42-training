@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cstdlib>
 
 #include <pthread.h>
 #include <semaphore.h>
@@ -21,16 +22,12 @@ void* leader(void* arg) {
   sem_wait(&g_mutex);  // Lock shared variables
 
   if (g_followers > 0) {
-    fprintf(stderr, "At %d. Has followers already waiting (%d followers)\n",
-            (long) arg, g_followers);
     g_followers--;               // Pair with a follower
     sem_post(&g_followerQueue);  // Signal follower
   } else {
-    fprintf(stderr, "At %d. Has NO followers already waiting\n", (long) arg);
     g_leaders++;  // No available g_followers, so wait
     sem_post(&g_mutex);
     sem_wait(&g_leaderQueue);
-    fprintf(stderr, "At %d. Passed the sem_wait\n", (long) arg);
   }
 
   // Paired and ready to dance
@@ -42,7 +39,6 @@ void* leader(void* arg) {
 
 void* follower(void* arg) {
   long id = (long) arg;
-  fprintf(stderr, "Followers #%s\n", (long) arg);
   sem_wait(&g_mutex);  // Lock shared variables
 
   if (g_leaders > 0) {
@@ -69,21 +65,16 @@ int main() {
   sem_init(&g_followerQueue, 0, 0);
 
   // Create random g_leaders and g_followers
-  // for (long i = 0; i < 10; i++) {
-  //     if (i % 2 == 0)
-  //         pthread_create(&threads[i], NULL, leader, (void *)i);
-  //     else
-  //         pthread_create(&threads[i], NULL, follower, (void *)i);
-  //     usleep(100000); // Simulate arrival times
-  // }
   for (long i = 0; i < 10; i++) {
-    if (i < 5) pthread_create(&threads[i], NULL, leader, (void*) i);
-    // else
-    //     pthread_create(&threads[i], NULL, follower, (void *)i);
+    if (rand() % 2 == 0)
+      pthread_create(&threads[i], NULL, leader, (void*) i);
+    else
+      pthread_create(&threads[i], NULL, follower, (void*) i);
     usleep(100000);  // Simulate arrival times
   }
 
-  // Wait for all threads
+  // Wait for all threads (Not all threads will
+  // return when g_leaders != g_followers)
   for (int i = 0; i < 10; i++) pthread_join(threads[i], NULL);
 
   sem_destroy(&g_mutex);
