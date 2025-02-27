@@ -1,5 +1,25 @@
+// Copyright (c) 2025 gyrok42.com
+//
+// This software is released under the MIT License.
+// https://opensource.org/licenses/MIT
+
+// Basic Synchronization Patterns
+// Queue: Semaphores can also be used to represent a queue
+
+// Text From: Little Book of Semaphores; Author: Allen B. Downey
+// Semaphores can also be used to represent a queue. In this case, the initial
+// value is 0, and usually the code is written so that it is not possible to
+// signal unless there is a thread waiting, so the value of the semaphore is
+// never positive. For example, imagine that threads represent ballroom dancers
+// and that two kinds of dancers, leaders and followers, wait in two queues
+// before entering the dance floor. When a leader arrives, it checks to see if
+// there is a follower waiting. If so, they can both proceed. Otherwise it
+// waits. Similarly, when a follower arrives, it checks for a leader and either
+// proceeds or waits, accordingly.
+
 #include <cstdio>
 #include <cstdlib>
+#include <ctime>
 
 #include <pthread.h>
 #include <semaphore.h>
@@ -65,16 +85,27 @@ int main() {
   sem_init(&g_followerQueue, 0, 0);
 
   // Create random g_leaders and g_followers
+  std::srand(static_cast<unsigned int>(std::time(0)));
+  int createdLeaders = 0;
+  int createdFollowers = 0;
   for (long i = 0; i < 10; i++) {
-    if (rand() % 2 == 0)
+    if (rand() % 2 == 0) {
       pthread_create(&threads[i], NULL, leader, (void*) i);
-    else
+      createdLeaders++;
+    } else {
       pthread_create(&threads[i], NULL, follower, (void*) i);
+      createdFollowers++;
+    }
     usleep(100000);  // Simulate arrival times
   }
 
   // Wait for all threads (Not all threads will
   // return when g_leaders != g_followers)
+  fprintf(stderr, "Created leaders: %d\n", createdLeaders);
+  fprintf(stderr, "Created followers: %d\n", createdFollowers);
+  if (createdLeaders != createdFollowers) {
+    fprintf(stderr, "Locked forever :-(\n");
+  }
   for (int i = 0; i < 10; i++) pthread_join(threads[i], NULL);
 
   sem_destroy(&g_mutex);
