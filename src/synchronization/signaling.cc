@@ -3,14 +3,16 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Basic Synchronization Patterns
-// Signaling: One thread sends a signal to another thread
-// to indicate that something has happened.
-// It makes possible to to guarantee that a section in one
-// code in one thread will run before a section of code in
-// another thread.
-// Solves the serialization problem.
-
+/**
+ * @file signaling.cc
+ * @brief Basic Synchronization Patterns - Signaling
+ * Signaling: One thread sends a signal to another thread
+ * to indicate that something has happened.
+ * It makes possible to to guarantee that a section in one
+ * code in one thread will run before a section of code in
+ * another thread.
+ * Solves the serialization problem.
+ */
 #include <cstdio>
 
 #include <pthread.h>

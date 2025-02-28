@@ -3,17 +3,20 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Rewrite the barrier solution so that after all the threads have passed
-// through, the turnstile is locked again.
-// This solution is sometimes called a two-phase barrier because it forces all
-// the threads to wait twice
-
-// 1. Only the Nth thread can lock or unlock the turnstiles.
-// 2. Before a thread can unlock the first turnstile, it has to close the
-// second,
-//    and vice versa; therefore it is impossible for one thread to get ahead of
-//    the others by more than one turnstile.
-
+/**
+ * @file reusable_barrier.cc
+ * @brief Basic Synchronization Patterns - Reusable barrier
+ *
+ * Rewrite the barrier solution so that after all the threads have passed
+ * through, the turnstile is locked again.
+ * This solution is sometimes called a two-phase barrier because it forces all
+ * the threads to wait twice
+ * 1. Only the Nth thread can lock or unlock the turnstiles.
+ * 2. Before a thread can unlock the first turnstile, it has to close the
+ * second,
+ *    and vice versa; therefore it is impossible for one thread to get ahead of
+ *    the others by more than one turnstile.
+ */
 #include <cstdio>
 
 #include <pthread.h>

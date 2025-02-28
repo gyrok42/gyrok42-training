@@ -3,23 +3,26 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Basic Synchronization Patterns
-// Mutex: Mutual exclusion
-// Problem: Prevent race conditions
-// in shared resources such as file system operations, shared memory,
-// or critical sections.
-// Illustration:
-// Two users trying to withdraw money from the same bank account at the
-// same time can lead to incorrect balance updates.
-//
-// Synchronization Solution:
-//
-// The bank enforces mutex on the shared bank balance.
-// If one user is withdrawing money, the system locks the balance to
-// prevent another transaction from happening simultaneously.
-// Once the first transaction completes, the mutex is released for the next
-// user.
-
+/**
+ * @file mutex.cc
+ * @brief Basic Synchronization Patterns - Mutex
+ * 
+ * Mutex: Mutual exclusion
+ * Problem: Prevent race conditions
+ * in shared resources such as file system operations, shared memory,
+ * or critical sections.
+ * Illustration:
+ * Two users trying to withdraw money from the same bank account at the
+ * same time can lead to incorrect balance updates.
+ *
+ * Synchronization Solution:
+ *
+ * The bank enforces mutex on the shared bank balance.
+ * If one user is withdrawing money, the system locks the balance to
+ * prevent another transaction from happening simultaneously.
+ * Once the first transaction completes, the mutex is released for the next
+ * user.
+ */
 #include <cstdio>
 
 #include <pthread.h>

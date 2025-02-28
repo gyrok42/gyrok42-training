@@ -3,20 +3,23 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Basic Synchronization Patterns
-// Rendezvous: Both threads must reach a common point before proceeding.
-// Problem: In real-time operating systems (RTOS), two tasks must complete
-// their setup phase before they execute their main operations.
-//
-// Illustration: A spacecraft and a docking station must reach a common state
-// before docking to prevent damage.
-//
-// Synchronization Solution:
-//
-// The spacecraft must reach the docking location and be stable before docking
-// begins. The docking station must be ready to receive the spacecraft.
-// Rendezvous ensures that both systems signal each other before proceeding.
-
+/**
+ * @file rendezvous.cc
+ * @brief Basic Synchronization Patterns - Rendezvous
+ *
+ * Rendezvous: Both threads must reach a common point before proceeding.
+ * Problem: In real-time operating systems (RTOS), two tasks must complete
+ * their setup phase before they execute their main operations.
+ *
+ * Illustration: A spacecraft and a docking station must reach a common state
+ * before docking to prevent damage.
+ *
+ * Synchronization Solution:
+ *
+ * The spacecraft must reach the docking location and be stable before docking
+ * begins. The docking station must be ready to receive the spacecraft.
+ * Rendezvous ensures that both systems signal each other before proceeding.
+ */
 #include <cstdio>
 
 #include <pthread.h>

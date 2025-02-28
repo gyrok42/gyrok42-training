@@ -3,26 +3,30 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Basic Synchronization Patterns
-// Multiplex: Limit the number of concurrent processes accessing a resource
-// (e.g., file descriptors, network sockets, thread pools).
-// Where It's Used:
-//
-// Linux process table: Limits the number of processes.
-// Web servers (Apache, Nginx): Control max concurrent requests.
-// GPU schedulers: Limit number of compute kernels.
-//
-// Illustration:
-// A parking garage can accommodate only a certain number of cars.
-// If the garage is full, new cars must wait until a spot is available.
-//
-// Synchronization Solution:
-//
-// A multiplex semaphore keeps track of available parking spots.
-// Each arriving car decrements the semaphore, and each departing
-// car increments it.
-// If no spots are available, incoming cars must wait.
-
+/**
+ * @file Basic Synchronization Patterns - Multiplex
+ * @brief Limit the number of concurrent processes accessing a resource.
+ *
+ * Limit the number of concurrent processes accessing a
+ * resource (e.g., file descriptors, network sockets, thread pools).
+ *
+ * Where It' Used:
+ *
+ * Linux process table: Limits the number of processes.
+ * Web servers (Apache, Nginx): Control max concurrent requests.
+ * GPU schedulers: Limit number of compute kernels.
+ *
+ * Illustration:
+ * A parking garage can accommodate only a certain number of cars.
+ * If the garage is full, new cars must wait until a spot is available.
+ *
+ * Synchronization Solution:
+ *
+ * A multiplex semaphore keeps track of available parking spots.
+ * Each arriving car decrements the semaphore, and each departing
+ * car increments it.
+ * If no spots are available, incoming cars must wait.
+ */
 #include <cstdio>
 
 #include <pthread.h>

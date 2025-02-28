@@ -3,21 +3,25 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
-// Basic Synchronization Patterns
-// Barrier – Race Start Synchronization
-// Problem: In an Olympic race, all runners must be at the starting line
-// and wait for the gunshot before starting the race.
-//
-// Synchronization Solution:
-//
-// A barrier ensures that no runner starts before all are ready.
-// The race gun (triggered by the referee) is released only after all runners
-// reach the starting line.
-//
-// Turnstile:
-// Threads increment a counter as they arrive.
-// When all threads arrive, a turnstile semaphore opens.
-// Each thread must pass through the turnstile one at a time.
+/**
+ * @file barrier.cc
+ * @brief Basic Synchronization Patterns - Barrier
+ * 
+ * Barrier – Race Start Synchronization
+ * Problem: In an Olympic race, all runners must be at the starting line
+ * and wait for the gunshot before starting the race.
+ *
+ * Synchronization Solution:
+ *
+ * A barrier ensures that no runner starts before all are ready.
+ * The race gun (triggered by the referee) is released only after all runners
+ * reach the starting line.
+ *
+ * Turnstile:
+ * Threads increment a counter as they arrive.
+ * When all threads arrive, a turnstile semaphore opens.
+ * Each thread must pass through the turnstile one at a time.
+ */
 
 #include <cstdio>
 
