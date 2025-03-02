@@ -2,7 +2,7 @@
 //
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
-#include "basic_bit_operations.h"
+#include "basic-bit-operations.h"
 
 void set_bit(uint8_t* byte_var, uint8_t bit_num) {
   *byte_var |= 1 << bit_num;

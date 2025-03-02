@@ -1,1 +1,1 @@
-exports_files(["reverse_rows.h", "basic_bit_operations.h"])  # Allows visibility
+exports_files(["reverse-rows.h", "basic-bit-operations.h"])  # Allows visibility

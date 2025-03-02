@@ -34,9 +34,9 @@ cc_binary(
 )
 
 cc_binary(
-    name = "reusable_barrier",
+    name = "reusable-barrier",
     includes = ["include"],  # Include path for headers
-    srcs = ["reusable_barrier.cc"],
+    srcs = ["reusable-barrier.cc"],
     copts = ["-std=c++20"],
 )
 

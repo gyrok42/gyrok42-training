@@ -14,14 +14,23 @@ MODULE.bazel.lock @gyrok42 @Jairo-borba
 # Header files ownership
 /include/ @gyrok42 @Jairo-borba
 /include/bitwise-operations/ @gyrok42 @Jairo-borba
+/include/circular-queue/ @gyrok42 @Jairo-borba
+/include/codecs/ @gyrok42 @Jairo-borba
+/include/simple-scheduler/ @gyrok42 @Jairo-borba
 
 # Source code ownership
 /src/ @gyrok42 @Jairo-borba
 /src/bitwise-operations/ @gyrok42 @Jairo-borba
+/src/circular-queue/ @gyrok42 @Jairo-borba
+/src/codecs/ @gyrok42 @Jairo-borba
+/src/simple-scheduler/ @gyrok42 @Jairo-borba
+/src/synchronization/ @gyrok42 @Jairo-borba
 
 # Tests ownership
 /tests/ @gyrok42 @Jairo-borba
 /tests/bitwise-operations/ @gyrok42 @Jairo-borba
+/tests/circular-queue/ @gyrok42 @Jairo-borba
+/tests/codecs/ @gyrok42 @Jairo-borba
 
 # Third-party dependencies and tools
 /third-party/ @gyrok42 @Jairo-borba

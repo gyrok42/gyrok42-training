@@ -27,8 +27,8 @@
 #include <iostream>
 
 // third-party includes
-#include "include/bitwise-operations/basic_bit_operations.h"
-#include "include/bitwise-operations/reverse_rows.h"
+#include "basic-bit-operations.h"
+#include "reverse-rows.h"
 
 void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes) {
   int left = 0;

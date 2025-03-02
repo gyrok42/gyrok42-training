@@ -9,7 +9,7 @@
 #include <gtest/gtest.h>
 
 // project includes
-#include "include/bitwise-operations/basic_bit_operations.h"
+#include "include/bitwise-operations/basic-bit-operations.h"
 
 /**
  * @test Test case for set_bit function.

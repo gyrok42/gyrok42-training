@@ -9,8 +9,8 @@
 #include <gtest/gtest.h>
 
 // project includes
-#include "include/bitwise-operations/basic_bit_operations.h"
-#include "include/bitwise-operations/reverse_rows.h"
+#include "include/bitwise-operations/basic-bit-operations.h"
+#include "include/bitwise-operations/reverse-rows.h"
 
 /**
  * @test Test case for reverse_array_bits_swapping function.

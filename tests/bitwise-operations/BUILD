@@ -1,19 +1,19 @@
 cc_test(
-    name = "basic_bit_operations_test",
-    srcs = ["basic_bit_operations_test.cc"],
+    name = "basic-bit-operations-test",
+    srcs = ["basic-bit-operations-test.cc"],
     deps = [
-        "//src/bitwise-operations:basic_bit_operations",
+        "//src/bitwise-operations:basic-bit-operations",
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
 )
 
 cc_test(
-    name = "reverse_rows_test",
-    srcs = ["reverse_rows_test.cc"],
+    name = "reverse-rows-test",
+    srcs = ["reverse-rows-test.cc"],
     deps = [
-        "//src/bitwise-operations:basic_bit_operations",
-        "//src/bitwise-operations:reverse_rows",
+        "//src/bitwise-operations:basic-bit-operations",
+        "//src/bitwise-operations:reverse-rows",
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
