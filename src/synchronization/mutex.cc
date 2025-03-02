@@ -6,7 +6,7 @@
 /**
  * @file mutex.cc
  * @brief Basic Synchronization Patterns - Mutex
- * 
+ *
  * Mutex: Mutual exclusion
  * Problem: Prevent race conditions
  * in shared resources such as file system operations, shared memory,

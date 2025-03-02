@@ -1,5 +1,5 @@
 cc_library(
-    name = "scheduler_ii_lib",
+    name = "scheduler-lib",
     hdrs = ["//include/simple-scheduler:scheduler.h"],
     srcs = ["scheduler.cc"],
     visibility = ["//visibility:public"],
@@ -9,6 +9,6 @@ cc_library(
 cc_binary(
     name = "scheduler",
     srcs = ["main.cc"],
-    deps = [":scheduler_ii_lib"],
+    deps = [":scheduler-lib"],
     copts = ["-std=c++20", "-Iinclude/simple-scheduler"],
 )

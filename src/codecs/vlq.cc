@@ -14,7 +14,7 @@
 // third-party includes
 
 // project includes
-#include "include/codecs/vlq.h"
+#include "vlq.h"
 
 size_t vlq_encode(uint32_t value, uint8_t* buffer) {
   size_t size = 0;

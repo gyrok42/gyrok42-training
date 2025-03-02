@@ -4,5 +4,5 @@ cc_library(
     srcs = ["vlq.cc"],
     hdrs = ["//include/codecs:vlq.h"],  # Ensure this exists
     visibility = ["//tests/codecs:__subpackages__"],  # Allow tests to use it
-    copts = ["-std=c++20"],
+    copts = ["-std=c++20", "-Iinclude/codecs"],
 )

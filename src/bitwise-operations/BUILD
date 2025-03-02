@@ -4,7 +4,7 @@ cc_library(
     srcs = ["basic_bit_operations.cc"],
     hdrs = ["//include/bitwise-operations:basic_bit_operations.h"],  # Ensure this exists
     visibility = ["//tests/bitwise-operations:__subpackages__"],  # Allow tests to use it
-    copts = ["-std=c++20"],
+    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )
 cc_library(
     name = "reverse_rows",
@@ -12,5 +12,5 @@ cc_library(
     srcs = ["reverse_rows.cc"],
     hdrs = ["//include/bitwise-operations:reverse_rows.h", "//include/bitwise-operations:basic_bit_operations.h"],  # Ensure this exists
     visibility = ["//tests/bitwise-operations:__subpackages__"],  # Allow tests to use it
-    copts = ["-std=c++20"],
+    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )

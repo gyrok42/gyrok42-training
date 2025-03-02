@@ -33,22 +33,22 @@ void debug(scheduler::Scheduler& scheduler) {
 }
 
 void functionI() {
-  //printTime();
+  // printTime();
   std::cout << "Task I" << std::endl;
 }
 
 void functionII() {
-  //printTime();
+  // printTime();
   std::cout << "Task II" << std::endl;
 }
 
 void functionIII() {
-  //printTime();
+  // printTime();
   std::cout << "Task III" << std::endl;
 }
 
 void functionIV() {
-  //printTime();
+  // printTime();
   std::cout << "Task IV" << std::endl;
 }
 
@@ -70,7 +70,7 @@ int main() {
     std::cout << "Starting dispatcher" << std::endl;
 
     dispatcher.launch(scheduler);
-    
+
     scheduleUtil(scheduler, functionII, std::chrono::milliseconds(8000));
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     scheduleUtil(scheduler, functionIII, std::chrono::milliseconds(7000));

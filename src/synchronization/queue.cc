@@ -6,7 +6,7 @@
 /**
  * @file queue.cc
  * @brief Basic Synchronization Patterns - Semaphore as a queue
- * 
+ *
  * Queue: Semaphores can also be used to represent a queue
  * Text From: Little Book of Semaphores; Author: Allen B. Downey
  * Semaphores can also be used to represent a queue. In this case, the initial

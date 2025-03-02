@@ -1,0 +1,1 @@
+exports_files(["circular-queue.h", "circular-queue2.h", "circular-queue3.h"])  # Allows visibility

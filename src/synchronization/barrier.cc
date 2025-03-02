@@ -6,7 +6,7 @@
 /**
  * @file barrier.cc
  * @brief Basic Synchronization Patterns - Barrier
- * 
+ *
  * Barrier – Race Start Synchronization
  * Problem: In an Olympic race, all runners must be at the starting line
  * and wait for the gunshot before starting the race.

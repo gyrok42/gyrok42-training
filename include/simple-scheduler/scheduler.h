@@ -83,7 +83,7 @@ class Dispatcher {
   /**
    * @brief Default destructor.
    */
-  ~Dispatcher() { }
+  ~Dispatcher() {}
 
   /**
    * @brief Launches a scheduler in a separate thread.
