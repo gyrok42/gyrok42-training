@@ -4,7 +4,7 @@
 // https://opensource.org/licenses/MIT
 
 /**
- * @file circular.cc
+ * @file circular2.cc
  * @brief The classical FIFO implemantation utilizing a circular buffer
  * technique
  *
@@ -40,9 +40,9 @@
  *                          tail  head
  *
  * Full:
- *     Buffer: [ 23 ] [ _ ] [ 30 ] [ 12 ] [ 17 ]
- *               ↑             ↑
- *              head          tail
+ *     Buffer: [ 23 ] [ 24 ] [ 30 ] [ 12 ] [ 17 ]
+ *                      ↑      ↑
+ *                    head   tail
  *
  * Note: We cannot use head == tail as a definition of full buffer
  * since that was used as a definition for empty already.
@@ -54,12 +54,8 @@
  *    Pros are 1. No extra storage needed 2. Simple verification
  *    Cons is that is wastes one slot, reduces the usable capacity by 1.
  *
- * In this implementation, it is using option B (Keep One slot empty).
- * In order to make things clear for the user of the CircularQueue class,
- * the template parameter will define the real capacity, in other words,
- * defines how many items the user can count on to be stored in the FIFO.
- * Internally, we calculate the real buffer to be of size
- * _INTERNAL_BUFFER_SIZE = BUFFER_SIZE + 1.
+ * In this implementation, it is using option A (Use count). The Option B
+ * was also implemented. @see circular.cc
  *
  */
 
@@ -69,14 +65,15 @@
 template <typename T, size_t BUFFER_SIZE>
 class CircularQueue {
  public:
-  bool empty() { return _head == _tail; }
-  bool full() { return next(_head) == _tail; }
+  bool empty() { return _count == 0; }
+  bool full() { return _count == BUFFER_SIZE; }
   std::optional<T> pop() {
     if (empty()) {
       return std::nullopt;
     }
     auto value = _buffer[_tail];
     _tail = next(_tail);
+    _count--;
 
     return value;
   }
@@ -87,6 +84,7 @@ class CircularQueue {
     _buffer[_head] = item;
 
     _head = next(_head);
+    _count++;
 
     return true;
   }
@@ -94,11 +92,11 @@ class CircularQueue {
  private:
   int _head{0};
   int _tail{0};
-  static const size_t _INTERNAL_BUFFER_SIZE = BUFFER_SIZE + 1;
-  T _buffer[_INTERNAL_BUFFER_SIZE];
+  size_t _count{0};
+  T _buffer[BUFFER_SIZE];
 
   int next(int current) {
-    int next = (current + 1) % _INTERNAL_BUFFER_SIZE;
+    int next = (current + 1) % BUFFER_SIZE;
     return next;
   }
 };
