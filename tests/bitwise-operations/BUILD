@@ -6,6 +6,7 @@ cc_test(
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
+    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )
 
 cc_test(
@@ -17,5 +18,6 @@ cc_test(
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
+    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )
 

@@ -17,7 +17,7 @@
  * @param array Pointer to the array of bytes.
  * @param bytes The number of bytes in the array.
  */
-void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes);
+void reverseArrayBitsSwapping(uint8_t* array, uint16_t bytes);
 
 /**
  * @brief Reverses the bits of each row of a 2D bit matrix.
@@ -38,12 +38,12 @@ void reverse_array_bits_swapping(uint8_t* array, uint16_t bytes);
  *
  * @see reverse_rows
  *
- * @param flat_array Pointer to the 2D bit array data stored as a flat array.
- * @param width_bytes The width of the 2D bit array in bytes (not bits).
- * @param height_rows The height of the 2D bit array in rows.
+ * @param flatArray Pointer to the 2D bit array data stored as a flat array.
+ * @param widthBytes The width of the 2D bit array in bytes (not bits).
+ * @param heightRows The height of the 2D bit array in rows.
  */
-void reverse_rows_swapping_bits(uint8_t* flat_array, uint16_t width_bytes,
-                                uint16_t height_rows);
+void reverseRowsSwappingBits(uint8_t* flatArray, uint16_t widthBytes,
+                                uint16_t heightRows);
 
 /**
  * @brief Reverses the order of elements in an array.
@@ -73,20 +73,20 @@ void reverseArray(uint8_t* arr, int size);
  * yzabcdef qrstuvwx ijklmnop abcdefgh (reverse bits of each byte)
  * abcdefgh ijklmnop qrstuvwx yzabcdef (reverse the bytes order)
  *
- * @param flat_array Pointer to the 2D bit array data stored as a flat array.
- * @param width_bytes The width of the 2D bit array in bytes (not bits).
- * @param height_rows The height of the 2D bit array in rows.
+ * @param flatArray Pointer to the 2D bit array data stored as a flat array.
+ * @param widthBytes The width of the 2D bit array in bytes (not bits).
+ * @param heightRows The height of the 2D bit array in rows.
  */
-void reverse_rows(uint8_t* flat_array, uint16_t width_bytes,
-                  uint16_t height_rows);
+void reverseRows(uint8_t* flatArray, uint16_t widthBytes,
+                  uint16_t heightRows);
 
 /**
  * @brief Prints a 2D matrix of bits.
  *
- * @param flat_array Pointer to the 2D maxtrix of bits data stored as a flat
+ * @param flatArray Pointer to the 2D maxtrix of bits data stored as a flat
  * array.
- * @param width_bytes The width of the 2D maxtrix of bits in bytes (not pixels).
- * @param height_rows The height of the 2D maxtrix of bits in rows.
+ * @param widthBytes The width of the 2D maxtrix of bits in bytes (not pixels).
+ * @param heightRows The height of the 2D maxtrix of bits in rows.
  */
-void print_2D_bit_matrix(uint8_t* flat_array, uint16_t width_bytes,
-                         uint16_t height_rows);
+void print2DBitMatrix(uint8_t* flatArray, uint16_t widthBytes,
+                         uint16_t heightRows);

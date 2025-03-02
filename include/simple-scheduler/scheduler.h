@@ -40,7 +40,7 @@ class Scheduler {
   /**
    * @brief Schedules a function for execution.
    * @param func Function to be executed.
-   * @param time_point Delay period to wait until run the scheduled function.
+   * @param timePoint Delay period to wait until run the scheduled function.
    */
   void scheduleFunction(ScheduledFunction func,
                         std::chrono::milliseconds delay);
@@ -49,7 +49,7 @@ class Scheduler {
    * @brief Retrieves and removes the next scheduled function if available.
    * @return An optional function to be executed.
    */
-  std::vector<ScheduledFunction> popExpiringFunctions(std::time_t time_point);
+  std::vector<ScheduledFunction> popExpiringFunctions(std::time_t timePoint);
 
   /**
    * @brief Retrieves the number of pending tasks still in the scheduler.

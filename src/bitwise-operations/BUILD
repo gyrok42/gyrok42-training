@@ -16,11 +16,11 @@ cc_library(
     copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )
 
-cc_library(
-    name = "bit-manipulation-tricks",
-    includes = ["include"],  # Include path for headers
-    srcs = ["bit-manipulation-tricks.cc"],
-    hdrs = ["//include/bitwise-operations:bit-manipulation-tricks.h"], 
-    visibility = ["//tests/bitwise-operations:__subpackages__"],  # Allow tests to use it
-    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
-)
+# cc_library(
+#     name = "bit-manipulation-tricks",
+#     includes = ["include"],  # Include path for headers
+#     srcs = ["bit-manipulation-tricks.cc"],
+#     hdrs = ["//include/bitwise-operations:bit-manipulation-tricks.h"], 
+#     visibility = ["//tests/bitwise-operations:__subpackages__"],  # Allow tests to use it
+#     copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
+# )

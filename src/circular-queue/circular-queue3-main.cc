@@ -2,7 +2,7 @@
 
 #include "circular-queue3.h"
 
-void play_with_queue_1(CircularQueue<int>& queue) {
+void playWithQueue_1(CircularQueue<int>& queue) {
   std::cout << "Trying to pop a value" << std::endl;
   auto value = queue.pop();
   if (!value) {
@@ -23,7 +23,7 @@ void play_with_queue_1(CircularQueue<int>& queue) {
   std::cout << std::endl;
 }
 
-void play_with_queue_2(CircularQueue<int>& queue) {
+void playWithQueue_2(CircularQueue<int>& queue) {
   auto value = queue.pop();
   if (!value) {
     std::cout << "Not able to get value from empty queue (OK)" << std::endl;
@@ -44,7 +44,7 @@ void play_with_queue_2(CircularQueue<int>& queue) {
   std::cout << std::endl;
 }
 
-void play_with_queue_3(CircularQueue<int>& queue) {
+void playWithQueue_3(CircularQueue<int>& queue) {
   auto value = queue.pop();
   if (!value) {
     std::cout << "Not able to get value from empty queue (OK)" << std::endl;
@@ -63,7 +63,7 @@ void play_with_queue_3(CircularQueue<int>& queue) {
   std::cout << std::endl;
 }
 
-void exhaust_queue(CircularQueue<int>& queue) {
+void exhaustQueue(CircularQueue<int>& queue) {
   std::cout << "Removing all elements in the queue" << std::endl;
   while (!queue.empty()) {
     std::cout << queue.pop().value() << ",";
@@ -73,11 +73,11 @@ void exhaust_queue(CircularQueue<int>& queue) {
 
 int main() {
   CircularQueue<int> queue(256);
-  play_with_queue_1(queue);
-  play_with_queue_2(queue);
-  play_with_queue_3(queue);
-  play_with_queue_2(queue);
-  exhaust_queue(queue);
+  playWithQueue_1(queue);
+  playWithQueue_2(queue);
+  playWithQueue_3(queue);
+  playWithQueue_2(queue);
+  exhaustQueue(queue);
 
   return 0;
 }

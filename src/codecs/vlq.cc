@@ -16,7 +16,7 @@
 // project includes
 #include "vlq.h"
 
-size_t vlq_encode(uint32_t value, uint8_t* buffer) {
+size_t vlqEncode(uint32_t value, uint8_t* buffer) {
   size_t size = 0;
   uint8_t temp[5];
 
@@ -37,7 +37,7 @@ size_t vlq_encode(uint32_t value, uint8_t* buffer) {
   return size;
 }
 
-size_t vlq_decode(const uint8_t* buffer, uint32_t* value) {
+size_t vlqDecode(const uint8_t* buffer, uint32_t* value) {
   *value = 0;
   size_t size = 0;
 
@@ -52,18 +52,18 @@ size_t vlq_decode(const uint8_t* buffer, uint32_t* value) {
   return size + 1;
 }
 
-size_t vlq_encode_array(const uint32_t* values, size_t count, uint8_t* buffer) {
+size_t vlqEncodeArray(const uint32_t* values, size_t count, uint8_t* buffer) {
   size_t total_size = 0;
   for (size_t i = 0; i < count; i++) {
-    total_size += vlq_encode(values[i], buffer + total_size);
+    total_size += vlqEncode(values[i], buffer + total_size);
   }
   return total_size;
 }
 
-size_t vlq_decode_array(const uint8_t* buffer, size_t count, uint32_t* values) {
-  size_t total_size = 0;
+size_t vlqDecodeArray(const uint8_t* buffer, size_t count, uint32_t* values) {
+  size_t totalSize = 0;
   for (size_t i = 0; i < count; i++) {
-    total_size += vlq_decode(buffer + total_size, &values[i]);
+    totalSize += vlqDecode(buffer + totalSize, &values[i]);
   }
-  return total_size;
+  return totalSize;
 }

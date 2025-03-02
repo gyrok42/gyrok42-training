@@ -20,7 +20,7 @@
  * @param buffer The output buffer to store the encoded bytes.
  * @return The number of bytes used in the encoded representation.
  */
-size_t vlq_encode(uint32_t value, uint8_t* buffer);
+size_t vlqEncode(uint32_t value, uint8_t* buffer);
 
 /**
  * @brief Decodes a VLQ-encoded integer.
@@ -29,7 +29,7 @@ size_t vlq_encode(uint32_t value, uint8_t* buffer);
  * @param value Pointer to store the decoded integer value.
  * @return The number of bytes consumed in decoding.
  */
-size_t vlq_decode(const uint8_t* buffer, uint32_t* value);
+size_t vlqDecode(const uint8_t* buffer, uint32_t* value);
 
 /**
  * @brief Encodes an array of integers into VLQ format.
@@ -39,7 +39,7 @@ size_t vlq_decode(const uint8_t* buffer, uint32_t* value);
  * @param buffer The output buffer to store the encoded data.
  * @return The total number of bytes used in encoding.
  */
-size_t vlq_encode_array(const uint32_t* values, size_t count, uint8_t* buffer);
+size_t vlqEncodeArray(const uint32_t* values, size_t count, uint8_t* buffer);
 
 /**
  * @brief Decodes a VLQ-encoded byte array into an array of integers.
@@ -49,4 +49,4 @@ size_t vlq_encode_array(const uint32_t* values, size_t count, uint8_t* buffer);
  * @param values The output array to store decoded integers.
  * @return The total number of bytes consumed in decoding.
  */
-size_t vlq_decode_array(const uint8_t* buffer, size_t count, uint32_t* values);
+size_t vlqDecodeArray(const uint8_t* buffer, size_t count, uint32_t* values);

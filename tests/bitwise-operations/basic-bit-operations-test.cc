@@ -9,59 +9,59 @@
 #include <gtest/gtest.h>
 
 // project includes
-#include "include/bitwise-operations/basic-bit-operations.h"
+#include "basic-bit-operations.h"
 
 /**
- * @test Test case for set_bit function.
+ * @test Test case for setBit function.
  *
  * This test verifies that setting a bit in a byte correctly updates the value.
  */
 TEST(BasicBitOperationsTest, SetBitTest) {
   uint8_t byte = 0b00000000;
-  set_bit(&byte, 2);  // Set bit at position 2
+  setBit(&byte, 2);  // Set bit at position 2
   EXPECT_EQ(byte, 0b00000100);
 
-  set_bit(&byte, 5);  // Set bit at position 5
+  setBit(&byte, 5);  // Set bit at position 5
   EXPECT_EQ(byte, 0b00100100);
 
-  set_bit(&byte, 2);  // Set same bit again (should remain the same)
+  setBit(&byte, 2);  // Set same bit again (should remain the same)
   EXPECT_EQ(byte, 0b00100100);
 }
 
 /**
- * @test Test case for reset_bit function.
+ * @test Test case for resetBit function.
  *
  * This test verifies that resetting a bit in a byte correctly clears the bit.
  */
 TEST(BasicBitOperationsTest, ResetBitTest) {
   uint8_t byte = 0b11111111;
-  reset_bit(&byte, 2);  // Clear bit at position 2
+  resetBit(&byte, 2);  // Clear bit at position 2
   EXPECT_EQ(byte, 0b11111011);
 
-  reset_bit(&byte, 5);  // Clear bit at position 5
+  resetBit(&byte, 5);  // Clear bit at position 5
   EXPECT_EQ(byte, 0b11011011);
 
-  reset_bit(&byte, 0);  // Clear least significant bit
+  resetBit(&byte, 0);  // Clear least significant bit
   EXPECT_EQ(byte, 0b11011010);
 
-  reset_bit(&byte, 2);  // Set same bit again (should remain the same)
+  resetBit(&byte, 2);  // Set same bit again (should remain the same)
   EXPECT_EQ(byte, 0b11011010);
 }
 
 /**
- * @test Test case for flip_bit function.
+ * @test Test case for flipBit function.
  *
  * This test verifies that flipping a bit in a byte correctly toggles its state.
  */
 TEST(BasicBitOperationsTest, FlipBitTest) {
   uint8_t byte = 0b00000000;
-  flip_bit(&byte, 3);  // Flip bit at position 3
+  flipBit(&byte, 3);  // Flip bit at position 3
   EXPECT_EQ(byte, 0b00001000);
 
-  flip_bit(&byte, 3);  // Flip the same bit again (should revert)
+  flipBit(&byte, 3);  // Flip the same bit again (should revert)
   EXPECT_EQ(byte, 0b00000000);
 
-  flip_bit(&byte, 7);  // Flip most significant bit
+  flipBit(&byte, 7);  // Flip most significant bit
   EXPECT_EQ(byte, 0b10000000);
 }
 
@@ -78,14 +78,14 @@ TEST(BasicBitOperationsTest, MultiplyTest) {
 }
 
 /**
- * @test Test case for the reverse_bits function.
+ * @test Test case for the reverseBits function.
  *
- * This test verifies that the reverse_bits function correctly
+ * This test verifies that the reverseBits function correctly
  * reverses the bits of a byte.
  */
 TEST(BasicBitOperationsTest, ReverseBitsTest) {
   uint8_t byte_var = 0b11001010;
-  reverse_bits(&byte_var);
+  reverseBits(&byte_var);
   EXPECT_EQ(byte_var, 0b01010011);
 }
 
@@ -98,7 +98,7 @@ TEST(BasicBitOperationsTest, ReverseBitsTest) {
 TEST(BasicBitOperationsTest, SwapBitsTest) {
   uint8_t byte1 = 0b10101010;
   uint8_t byte2 = 0b01010100;
-  swap_bits(&byte1, 7, &byte2, 0);
+  swapBits(&byte1, 7, &byte2, 0);
 
   EXPECT_EQ(byte1, 0b00101010);
   EXPECT_EQ(byte2, 0b01010101);

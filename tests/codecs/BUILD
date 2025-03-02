@@ -6,4 +6,5 @@ cc_test(
         "@googletest//:gtest_main",  # Updated dependency reference
     ],
     includes = ["include"],  # Include path for headers
+    copts = ["-std=c++20", "-Iinclude/codecs"],
 )

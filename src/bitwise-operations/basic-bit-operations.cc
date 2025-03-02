@@ -4,16 +4,16 @@
 // https://opensource.org/licenses/MIT
 #include "basic-bit-operations.h"
 
-void set_bit(uint8_t* byte_var, uint8_t bit_num) {
-  *byte_var |= 1 << bit_num;
+void setBit(uint8_t* byteVar, uint8_t bitNum) {
+  *byteVar |= 1 << bitNum;
 }
 
-void reset_bit(uint8_t* byte_var, uint8_t bit_num) {
-  *byte_var &= ~(1 << bit_num);
+void resetBit(uint8_t* byteVar, uint8_t bitNum) {
+  *byteVar &= ~(1 << bitNum);
 }
 
-void flip_bit(uint8_t* byte_var, uint8_t bit_num) {
-  *byte_var ^= (1 << bit_num);
+void flipBit(uint8_t* byteVar, uint8_t bitNum) {
+  *byteVar ^= (1 << bitNum);
 }
 
 int32_t multiply(int32_t a, int32_t b) {
@@ -33,10 +33,10 @@ int32_t multiply(int32_t a, int32_t b) {
   return negative ? -result : result;
 }
 
-void reverse_bits(uint8_t* byte_var) {
-  *byte_var = (*byte_var & 0xF0) >> 4 | (*byte_var & 0x0F) << 4;
-  *byte_var = (*byte_var & 0xCC) >> 2 | (*byte_var & 0x33) << 2;
-  *byte_var = (*byte_var & 0xAA) >> 1 | (*byte_var & 0x55) << 1;
+void reverseBits(uint8_t* byteVar) {
+  *byteVar = (*byteVar & 0xF0) >> 4 | (*byteVar & 0x0F) << 4;
+  *byteVar = (*byteVar & 0xCC) >> 2 | (*byteVar & 0x33) << 2;
+  *byteVar = (*byteVar & 0xAA) >> 1 | (*byteVar & 0x55) << 1;
 }
 
 void reverseArray(uint8_t* arr, int size) {
@@ -52,12 +52,12 @@ void reverseArray(uint8_t* arr, int size) {
   }
 }
 
-void swap_bits(uint8_t* byte1, uint8_t bit1, uint8_t* byte2, uint8_t bit2) {
-  int8_t bit1_to_right = ((*byte1) >> bit1) & 1;
-  int8_t bit2_to_right = ((*byte2) >> bit2) & 1;
+void swapBits(uint8_t* byte1, uint8_t bit1, uint8_t* byte2, uint8_t bit2) {
+  int8_t bit1ToRight = ((*byte1) >> bit1) & 1;
+  int8_t bit2ToRight = ((*byte2) >> bit2) & 1;
 
-  int8_t xor_value = bit1_to_right ^ bit2_to_right;
+  int8_t xorValue = bit1ToRight ^ bit2ToRight;
 
-  *byte1 ^= xor_value << bit1;
-  *byte2 ^= xor_value << bit2;
+  *byte1 ^= xorValue << bit1;
+  *byte2 ^= xorValue << bit2;
 }

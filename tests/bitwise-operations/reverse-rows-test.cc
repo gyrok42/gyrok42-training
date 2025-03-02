@@ -9,8 +9,8 @@
 #include <gtest/gtest.h>
 
 // project includes
-#include "include/bitwise-operations/basic-bit-operations.h"
-#include "include/bitwise-operations/reverse-rows.h"
+#include "basic-bit-operations.h"
+#include "reverse-rows.h"
 
 /**
  * @test Test case for reverse_array_bits_swapping function.
@@ -19,7 +19,7 @@
  */
 TEST(FlipBitmapTest, ReverseArrayBitsTest) {
   uint8_t arr[] = {0b10100000, 0b01100000};
-  reverse_array_bits_swapping(arr, 2);
+  reverseArrayBitsSwapping(arr, 2);
 
   EXPECT_EQ(arr[0], 0b00000110);
   EXPECT_EQ(arr[1], 0b00000101);
@@ -37,8 +37,8 @@ TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
       0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
   std::cout << "ORIGINAL 2D MATRIX" << std::endl;
   std::cout << "==================" << std::endl;
-  print_2D_bit_matrix(arr, 3, 2);
-  reverse_rows_swapping_bits(arr, 3, 2);
+  print2DBitMatrix(arr, 3, 2);
+  reverseRowsSwappingBits(arr, 3, 2);
   // Row 0
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
@@ -49,7 +49,7 @@ TEST(FlipBitmapTest, FlipHorizontalTestSwappingBits) {
   EXPECT_EQ(arr[5], 0b01101100);
   std::cout << "FLIPPED 2D MATRIX (Horizontally)" << std::endl;
   std::cout << "================================" << std::endl;
-  print_2D_bit_matrix(arr, 3, 2);
+  print2DBitMatrix(arr, 3, 2);
 }
 
 /**
@@ -85,8 +85,8 @@ TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
       0b00110110, 0b00110110, 0b11001011};  // rev: 11010011 01101100 01101100
   std::cout << "ORIGINAL 2D MATRIX" << std::endl;
   std::cout << "==================" << std::endl;
-  print_2D_bit_matrix(arr, 3, 2);
-  reverse_rows(arr, 3, 2);
+  print2DBitMatrix(arr, 3, 2);
+  reverseRows(arr, 3, 2);
   EXPECT_EQ(arr[0], 0b00110110);
   EXPECT_EQ(arr[1], 0b00110110);
   EXPECT_EQ(arr[2], 0b11001011);
@@ -95,7 +95,7 @@ TEST(FlipBitmapTest, FlipHorizontalTestReversing) {
   EXPECT_EQ(arr[5], 0b01101100);
   std::cout << "ORIGINAL 2D MATRIX" << std::endl;
   std::cout << "==================" << std::endl;
-  print_2D_bit_matrix(arr, 3, 2);
+  print2DBitMatrix(arr, 3, 2);
 }
 
 /**
