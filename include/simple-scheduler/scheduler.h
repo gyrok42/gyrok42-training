@@ -52,15 +52,16 @@ class Scheduler {
 
  private:
   mutable std::mutex _mtx;
-  std::priority_queue<std::time_t, std::vector<std::time_t>,
-                      std::greater<std::time_t>>
+  struct ScheduleInfo {
+    std::time_t expirationTime;
+    ScheduledFunction function;
+    bool operator>(const ScheduleInfo& other) const {
+      return expirationTime > other.expirationTime;
+    }
+  };
+  std::priority_queue<ScheduleInfo, std::vector<ScheduleInfo>,
+                      std::greater<ScheduleInfo>>
       _minHeap;
-  // Using the unordered_multimap to associate the scheduled time with the
-  // corresponding function that will run. Another option is to use only
-  // the priority_queue.
-  // For example, using a std::pair<std::time_t, ScheduledFunction>.
-  // To make that work, just create a custom comparator for it.
-  std::unordered_multimap<std::time_t, ScheduledFunction> _scheduledFunctions;
 };
 
 }  // namespace scheduler

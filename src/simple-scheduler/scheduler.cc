@@ -21,11 +21,8 @@ using ScheduledFunction = std::function<void()>;
 void Scheduler::scheduleFunction(ScheduledFunction func,
                                  time_t absoluteExpirationTime) {
   std::lock_guard<std::mutex> guard(_mtx);
-  auto iterator = _scheduledFunctions.find(absoluteExpirationTime);
-  if (std::end(_scheduledFunctions) == iterator) {
-    _minHeap.push(absoluteExpirationTime);
-  }
-  _scheduledFunctions.insert({absoluteExpirationTime, func});
+  _minHeap.push(
+      ScheduleInfo{.expirationTime = absoluteExpirationTime, .function = func});
 }
 
 std::vector<ScheduledFunction> Scheduler::popReady(
@@ -33,14 +30,13 @@ std::vector<ScheduledFunction> Scheduler::popReady(
   std::vector<ScheduledFunction> expiringFunctions;
   std::lock_guard<std::mutex> guard(_mtx);
 
-  auto next = _minHeap.top();
-  if (next <= absoluteTimeNow) {
-    _minHeap.pop();
-    auto range = _scheduledFunctions.equal_range(next);
-    for (auto it = range.first; it != range.second; it++) {
-      expiringFunctions.push_back(it->second);
+  while (!_minHeap.empty()) {
+    if (auto next = _minHeap.top(); next.expirationTime <= absoluteTimeNow) {
+      _minHeap.pop();
+      expiringFunctions.push_back(next.function);
+    } else {
+      break;
     }
-    _scheduledFunctions.erase(absoluteTimeNow);
   }
 
   return expiringFunctions;
@@ -48,7 +44,7 @@ std::vector<ScheduledFunction> Scheduler::popReady(
 
 size_t Scheduler::getNumPendingTasks() const {
   std::lock_guard<std::mutex> guard(_mtx);
-  return _scheduledFunctions.size();
+  return _minHeap.size();
 }
 
 }  // namespace scheduler
