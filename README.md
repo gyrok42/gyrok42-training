@@ -95,22 +95,81 @@ start docs/html/index.html     # Windows
 
 ```
 .
-├── docs
-│   ├── html
-│   ├── latex
-│   └── CODEOWNERS
-├── include
-│   └── bitwise-operations
-├── src
-│   └── bitwise-operations
-├── tests
-│   └── bitwise-operations
-├── third-party
-├── tools
 ├── Doxyfile
 ├── LICENSE
-├── MODULE.bazel
-└── README.md
+├── README.md
+├── docs
+│   └── CODEOWNERS
+├── include
+│   ├── bitwise-operations
+│   │   ├── BUILD
+│   │   ├── basic-bit-operations.h
+│   │   ├── bit-manipulation-tricks.h
+│   │   └── reverse-rows.h
+│   ├── circular-queue
+│   │   ├── BUILD
+│   │   ├── circular-queue.h
+│   │   ├── circular-queue2.h
+│   │   └── circular-queue3.h
+│   ├── codecs
+│   │   ├── BUILD
+│   │   └── vlq.h
+│   └── simple-scheduler
+│       ├── BUILD
+│       ├── dispatcher.h
+│       └── scheduler.h
+├── scripts
+│   ├── lint-check
+│   └── lint-fix
+├── src
+│   ├── bitwise-operations
+│   │   ├── BUILD
+│   │   ├── basic-bit-operations.cc
+│   │   ├── bit-manipulation-tricks.cc
+│   │   └── reverse-rows.cc
+│   ├── circular-queue
+│   │   ├── BUILD
+│   │   ├── circular-queue-main.cc
+│   │   ├── circular-queue2-main.cc
+│   │   ├── circular-queue2.cc
+│   │   ├── circular-queue3-main.cc
+│   │   └── circular-queue3.cc
+│   ├── codecs
+│   │   ├── BUILD
+│   │   └── vlq.cc
+│   ├── simple-scheduler
+│   │   ├── BUILD
+│   │   ├── dispatcher.cc
+│   │   ├── main.cc
+│   │   └── scheduler.cc
+│   └── synchronization
+│       ├── BUILD
+│       ├── barrier.cc
+│       ├── multiplex.cc
+│       ├── mutex.cc
+│       ├── queue.cc
+│       ├── rendezvous.cc
+│       ├── reusable-barrier.cc
+│       └── signaling.cc
+├── tests
+│   ├── bitwise-operations
+│   │   ├── BUILD
+│   │   ├── basic-bit-operations-test.cc
+│   │   ├── bit-manipulation-tricks-test.cc
+│   │   └── reverse-rows-test.cc
+│   ├── circular-queue
+│   │   ├── BUILD
+│   │   ├── circular-queue-test.cc
+│   │   ├── circular-queue2-test.cc
+│   │   └── circular-queue3-test.cc
+│   ├── codecs
+│   │   ├── BUILD
+│   │   └── vlq-test.cc
+│   └── simple-scheduler
+│       ├── BUILD
+│       └── scheduler-test.cc
+├── third-party
+└── tools
 ```
 
 ## **Contributing**
