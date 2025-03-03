@@ -43,7 +43,7 @@ void reverseArrayBitsSwapping(uint8_t* array, uint16_t bytes);
  * @param heightRows The height of the 2D bit array in rows.
  */
 void reverseRowsSwappingBits(uint8_t* flatArray, uint16_t widthBytes,
-                                uint16_t heightRows);
+                             uint16_t heightRows);
 
 /**
  * @brief Reverses the order of elements in an array.
@@ -77,8 +77,7 @@ void reverseArray(uint8_t* arr, int size);
  * @param widthBytes The width of the 2D bit array in bytes (not bits).
  * @param heightRows The height of the 2D bit array in rows.
  */
-void reverseRows(uint8_t* flatArray, uint16_t widthBytes,
-                  uint16_t heightRows);
+void reverseRows(uint8_t* flatArray, uint16_t widthBytes, uint16_t heightRows);
 
 /**
  * @brief Prints a 2D matrix of bits.
@@ -89,4 +88,4 @@ void reverseRows(uint8_t* flatArray, uint16_t widthBytes,
  * @param heightRows The height of the 2D maxtrix of bits in rows.
  */
 void print2DBitMatrix(uint8_t* flatArray, uint16_t widthBytes,
-                         uint16_t heightRows);
+                      uint16_t heightRows);

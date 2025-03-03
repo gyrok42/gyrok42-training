@@ -32,7 +32,8 @@ void Scheduler::scheduleFunction(ScheduledFunction func,
   _scheduledFunctions.insert({expirationTime, func});
 }
 
-std::vector<ScheduledFunction> Scheduler::popReady(std::time_t absoluteTimeNow) {
+std::vector<ScheduledFunction> Scheduler::popReady(
+    std::time_t absoluteTimeNow) {
   std::vector<ScheduledFunction> expiringFunctions;
   std::lock_guard<std::mutex> guard(_mtx);
 

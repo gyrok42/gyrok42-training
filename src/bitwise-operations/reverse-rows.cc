@@ -50,15 +50,13 @@ void reverseArrayBitsSwapping(uint8_t* array, uint16_t bytes) {
 }
 
 void reverseRowsSwappingBits(uint8_t* flatArray, uint16_t widthBytes,
-                                uint16_t heightRows) {
+                             uint16_t heightRows) {
   for (uint16_t h = 0; h < heightRows; h++) {
-    reverseArrayBitsSwapping(&flatArray[multiply(widthBytes, h)],
-                                widthBytes);
+    reverseArrayBitsSwapping(&flatArray[multiply(widthBytes, h)], widthBytes);
   }
 }
 
-void reverseRows(uint8_t* flatArray, uint16_t widthBytes,
-                  uint16_t heightRows) {
+void reverseRows(uint8_t* flatArray, uint16_t widthBytes, uint16_t heightRows) {
   uint32_t totalBytes = multiply(heightRows, widthBytes);
   for (uint16_t rowBytePosition = 0; rowBytePosition < totalBytes;
        rowBytePosition += widthBytes) {
@@ -75,14 +73,14 @@ void reverseRows(uint8_t* flatArray, uint16_t widthBytes,
 }
 
 void print2DBitMatrix(uint8_t* flatArray, uint16_t widthBytes,
-                         uint16_t heightRows) {
+                      uint16_t heightRows) {
   uint32_t totalBytes = multiply(heightRows, widthBytes);
   for (uint16_t rowBytePosition = 0; rowBytePosition < totalBytes;
        rowBytePosition += widthBytes) {
     for (uint16_t colBytePosition = 0; colBytePosition < widthBytes;
          colBytePosition++) {
-      std::cout << std::format(
-          "{:08b}", flatArray[rowBytePosition + colBytePosition]);
+      std::cout << std::format("{:08b}",
+                               flatArray[rowBytePosition + colBytePosition]);
     }
     std::cout << std::endl;
   }
