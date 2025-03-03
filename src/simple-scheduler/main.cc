@@ -1,90 +1,85 @@
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
+#include <string>
 
+#include "dispatcher.h"
 #include "scheduler.h"
 
-void printTime() {
-  // Get the current time point
+std::string printTime() {
   auto now = std::chrono::system_clock::now();
-
-  // Convert to a time_t (seconds precision)
-  auto time_t_now = std::chrono::system_clock::to_time_t(now);
-
-  // Convert to local time
-  std::tm local_tm = *std::localtime(&time_t_now);
-
-  // Extract milliseconds
   auto duration_since_epoch = now.time_since_epoch();
   auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
-                          duration_since_epoch) %
-                      1000;
-
-  // Print formatted time
-  std::cout << std::put_time(&local_tm,
-                             "%H:%M:%S")  // Print hours, minutes, and seconds
-            << ":" << std::setw(3) << std::setfill('0')
-            << milliseconds.count()  // Print milliseconds
-            << ": ";
-}
-
-void debug(scheduler::Scheduler& scheduler) {
-  std::cout << "Pending tasks: " << scheduler.getNumPendingTasks() << std::endl;
+      duration_since_epoch);
+  std::ostringstream ostr;
+  ostr << "(" << milliseconds.count() % 100000 << "): ";
+  return ostr.str();
 }
 
 void functionI() {
-  // printTime();
-  std::cout << "Task I" << std::endl;
+  std::cout << printTime() << "Task I" << std::endl;
 }
 
 void functionII() {
-  // printTime();
-  std::cout << "Task II" << std::endl;
+  std::cout << printTime() << "Task II" << std::endl;
 }
 
 void functionIII() {
-  // printTime();
-  std::cout << "Task III" << std::endl;
+  std::cout << printTime() << "Task III" << std::endl;
 }
 
 void functionIV() {
-  // printTime();
-  std::cout << "Task IV" << std::endl;
+  std::cout << printTime() << "Task IV" << std::endl;
 }
 
-void scheduleUtil(scheduler::Scheduler& scheduler,
-                  scheduler::ScheduledFunction func,
-                  std::chrono::milliseconds time) {
-  scheduler.scheduleFunction(func, time);
-  debug(scheduler);
-}
+// Another option is to define a Functor
+struct MyRunnable {
+  int _myParameter1;
+  std::string _myParameter2;
+
+  void operator()() {
+    std::cout << ::printTime() << "MyRunnable" << std::endl;
+    std::cout << "\t\tRunning my thread" << std::endl;
+    std::cout << "\t\tParameter1: " << _myParameter1 << std::endl;
+    std::cout << "\t\tParameter2: " << _myParameter2 << std::endl;
+    std::cout << "\t\tMyRunnable Working ..." << std::endl;
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::cout << "\t\tFinished, bye" << std::endl;
+  }
+};
 
 int main() {
   {
-    scheduler::Dispatcher dispatcher;
-    scheduler::Scheduler scheduler;
-
-    std::cout << "Scheduling tasks ..." << std::endl;
-    // scheduleUtil(scheduler, functionI, std::chrono::milliseconds(3000));
+    using namespace std::chrono_literals;
+    scheduler::Dispatcher<scheduler::Scheduler> dispatcher;
+    auto scheduler = std::make_shared<scheduler::Scheduler>();
 
     std::cout << "Starting dispatcher" << std::endl;
-
     dispatcher.launch(scheduler);
+    std::cout << "Scheduling tasks ..." << std::endl;
 
-    scheduleUtil(scheduler, functionII, std::chrono::milliseconds(8000));
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    scheduleUtil(scheduler, functionIII, std::chrono::milliseconds(7000));
-    scheduleUtil(scheduler, functionIII, std::chrono::milliseconds(3000));
-    scheduleUtil(scheduler, functionIV, std::chrono::milliseconds(3000));
-    scheduleUtil(scheduler, functionIV, std::chrono::milliseconds(4000));
+    scheduler->scheduleFunction(functionI, 3000ms);
+    scheduler->scheduleFunction(functionII, 8000ms);
+    std::this_thread::sleep_for(1s);
+    scheduler->scheduleFunction(functionIII, 7000ms);
+    scheduler->scheduleFunction(functionIV, 3000ms);
+    scheduler->scheduleFunction(functionIII, 3000ms);
+    scheduler->scheduleFunction(
+        MyRunnable{._myParameter1 = 42, ._myParameter2 = "Hello!"}, 8000ms);
+    std::this_thread::sleep_for(9s);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(9000));
-
-    std::cout << "Stopping ..." << std::endl;
-
+    scheduler->scheduleFunction(functionI, 100ms);
+    std::cout << "Stopping" << std::endl;
+    std::this_thread::sleep_for(2s);
+    // scheduler = nullptr;
+    // scheduler.reset();
+    // Stops the dispatcher (it will no longer spawn expiring threads).
     dispatcher.stop();
 
-    std::cout << "No more scheduled tasks, bye" << std::endl;
+    std::cout << "No more scheduled tasks, bye: " << std::endl;
+    // Problem: We don't have control over the threads spawn by the dispatcher
+    // It does not guarantee that all scheduled threads have finished.
   }
 
   return 0;

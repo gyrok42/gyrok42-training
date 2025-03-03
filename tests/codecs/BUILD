@@ -1,6 +1,6 @@
 cc_test(
     name = "vlq",
-    srcs = ["vlq_test.cc"],
+    srcs = ["vlq-test.cc"],
     deps = [
         "//src/codecs:codecs",
         "@googletest//:gtest_main",  # Updated dependency reference

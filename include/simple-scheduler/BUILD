@@ -1,1 +1,1 @@
-exports_files(["scheduler.h"])  # Allows visibility
+exports_files(["scheduler.h", "dispatcher.h"])  # Allows visibility

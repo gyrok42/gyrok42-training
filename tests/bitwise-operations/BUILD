@@ -21,3 +21,13 @@ cc_test(
     copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
 )
 
+cc_test(
+    name = "bit-manipulation-tricks-test",
+    srcs = ["bit-manipulation-tricks-test.cc"],
+    deps = [
+        "//src/bitwise-operations:bit-manipulation-tricks",
+        "@googletest//:gtest_main",  # Updated dependency reference
+    ],
+    includes = ["include"],  # Include path for headers
+    copts = ["-std=c++20", "-Iinclude/bitwise-operations"],
+)

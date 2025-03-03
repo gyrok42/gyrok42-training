@@ -15,11 +15,13 @@
 #include <atomic>
 #include <chrono>
 #include <functional>
+#include <memory>
 #include <mutex>
 #include <queue>
 #include <thread>
 #include <unordered_map>
 #include <vector>
+
 namespace scheduler {
 using ScheduledFunction = std::function<void()>;
 /**
@@ -29,27 +31,18 @@ using ScheduledFunction = std::function<void()>;
 class Scheduler {
  public:
   /**
-   * @brief Default constructor.
-   */
-  Scheduler() {}
-  /**
-   * @brief Default destructor.
-   */
-  ~Scheduler() {}
-
-  /**
    * @brief Schedules a function for execution.
    * @param func Function to be executed.
-   * @param timePoint Delay period to wait until run the scheduled function.
+   * @param relativeTime Delay period to wait until run the scheduled function.
    */
   void scheduleFunction(ScheduledFunction func,
-                        std::chrono::milliseconds delay);
+                        std::chrono::milliseconds relativeTime);
 
   /**
    * @brief Retrieves and removes the next scheduled function if available.
    * @return An optional function to be executed.
    */
-  std::vector<ScheduledFunction> popExpiringFunctions(std::time_t timePoint);
+  std::vector<ScheduledFunction> popReady(std::time_t relativeTime);
 
   /**
    * @brief Retrieves the number of pending tasks still in the scheduler.
@@ -68,44 +61,6 @@ class Scheduler {
   // For example, using a std::pair<std::time_t, ScheduledFunction>.
   // To make that work, just create a custom comparator for it.
   std::unordered_multimap<std::time_t, ScheduledFunction> _scheduledFunctions;
-};
-
-/**
- * @class Dispatcher
- * @brief Manages execution of scheduled tasks in separate threads.
- */
-class Dispatcher {
- public:
-  /**
-   * @brief Default constructor.
-   */
-  Dispatcher() {}
-  /**
-   * @brief Default destructor.
-   */
-  ~Dispatcher() {}
-
-  /**
-   * @brief Launches a scheduler in a separate thread.
-   * @param scheduler Reference to the scheduler managing tasks.
-   * @return true if success, otherwise false.
-   * If it has already been launched but not stopped,
-   * the launch will not re-launch. It will return false.
-   */
-  bool launch(Scheduler& scheduler);
-
-  /**
-   * @brief Executes scheduled tasks as per the scheduler's queue.
-   * @param scheduler Reference to the scheduler managing tasks.
-   */
-  void runTasksAsScheduled(Scheduler& scheduler);
-
-  void stop();
-
- private:
-  std::unique_ptr<std::thread> _tasksRunner;
-  std::atomic<bool> _stopFlag{false};
-  std::vector<std::thread> _threads;
 };
 
 }  // namespace scheduler
