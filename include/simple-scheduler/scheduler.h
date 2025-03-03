@@ -35,12 +35,12 @@ class Scheduler {
    * @param func Function to be executed.
    * @param relativeTime Delay period to wait until run the scheduled function.
    */
-  void scheduleFunction(ScheduledFunction func,
-                        std::chrono::milliseconds relativeTime);
+  void scheduleFunction(ScheduledFunction func, time_t absoluteExpirationTime);
 
   /**
    * @brief Retrieves and removes the next scheduled function if available.
-   * @return An optional function to be executed.
+   * @param relativeTime
+   * @return Functions ready to be executed.
    */
   std::vector<ScheduledFunction> popReady(std::time_t relativeTime);
 

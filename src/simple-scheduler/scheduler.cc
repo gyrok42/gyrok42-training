@@ -19,17 +19,13 @@ namespace scheduler {
 using ScheduledFunction = std::function<void()>;
 
 void Scheduler::scheduleFunction(ScheduledFunction func,
-                                 std::chrono::milliseconds relativeTime) {
-  using std::chrono::system_clock;
-  auto expirationTime =
-      system_clock::to_time_t(system_clock::now() + relativeTime);
-
+                                 time_t absoluteExpirationTime) {
   std::lock_guard<std::mutex> guard(_mtx);
-  auto iterator = _scheduledFunctions.find(expirationTime);
+  auto iterator = _scheduledFunctions.find(absoluteExpirationTime);
   if (std::end(_scheduledFunctions) == iterator) {
-    _minHeap.push(expirationTime);
+    _minHeap.push(absoluteExpirationTime);
   }
-  _scheduledFunctions.insert({expirationTime, func});
+  _scheduledFunctions.insert({absoluteExpirationTime, func});
 }
 
 std::vector<ScheduledFunction> Scheduler::popReady(

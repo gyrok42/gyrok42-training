@@ -1,2 +1,5 @@
 find . -name "*.cc" -o -name "*.h" | xargs clang-format -i
 
+# git ls-files '*.cpp' '*.h' | xargs clang-format -i
+
+

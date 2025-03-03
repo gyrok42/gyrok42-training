@@ -3,7 +3,7 @@ cc_library(
     hdrs = ["//include/simple-scheduler:scheduler.h", 
     "//include/simple-scheduler:dispatcher.h"],
     srcs = ["scheduler.cc"],
-    visibility = ["//visibility:public"],
+    visibility = ["//tests/simple-scheduler:__subpackages__"],
     copts = ["-std=c++20", "-Iinclude/simple-scheduler"],
 )
 
