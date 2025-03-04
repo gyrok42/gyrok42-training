@@ -41,6 +41,37 @@ class Dispatcher {
   }
 
   /**
+   * @brief Spawns and executes all scheduled tasks that are ready at the given
+   * time.
+   *
+   * This function retrieves all functions that are ready to execute at
+   * `timeNow` from the scheduler and spawns each one in a separate detached
+   * thread.
+   *
+   * @tparam SCHEDULER The scheduler type that manages the scheduled functions.
+   * @param timeNow The current absolute time (`std::time_t`) to check for ready
+   * tasks.
+   * @param scheduler A weak pointer to the scheduler instance, allowing safe
+   * access.
+   *
+   * @return true: Ok, false: error with scheduler, stop.
+   *
+   * @note Each ready function is executed in a separate detached thread.
+   */
+  bool spawnReady(time_t timeNow, std::weak_ptr<SCHEDULER> scheduler) {
+    auto schedulerPtr = scheduler.lock();
+    if (schedulerPtr == nullptr) {
+      return false;
+    }
+    auto functions = schedulerPtr->popReady(timeNow);
+    for (auto func : functions) {
+      std::thread newThread{func};
+      newThread.detach();
+    }
+    return true;
+  }
+
+  /**
    * @brief Executes scheduled tasks as per the scheduler's queue.
    * @param scheduler Reference to the scheduler managing tasks.
    */
@@ -49,18 +80,7 @@ class Dispatcher {
     using namespace std::chrono_literals;
     for (;;) {
       time_t timeNow = system_clock::to_time_t(system_clock::now());
-      auto schedulerPtr = scheduler.lock();
-      if (schedulerPtr == nullptr) {
-        std::cerr << "Dispatcher error: Scheduler pointer no longer exists"
-                  << std::endl;
-        break;
-      }
-      auto functions = schedulerPtr->popReady(timeNow);
-      for (auto func : functions) {
-        std::thread newThread{func};
-        newThread.detach();
-      }
-      if (_stopFlag.load()) {
+      if (!spawnReady(timeNow, scheduler) || _stopFlag.load()) {
         break;
       }
       std::this_thread::sleep_for(1ms);

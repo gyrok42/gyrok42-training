@@ -30,6 +30,7 @@ using ScheduledFunction = std::function<void()>;
  */
 class Scheduler {
  public:
+  virtual ~Scheduler() = default;
   /**
    * @brief Schedules a function for execution.
    * @param func Function to be executed.
